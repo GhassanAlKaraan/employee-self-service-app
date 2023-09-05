@@ -51,7 +51,7 @@ class _RegisterPageState extends State<RegisterPage> {
         }else{
           utility.showSnackBar(context, "Passwords do not match!");
         }
-      } on FirebaseAuthException catch(e){
+      } on FirebaseAuthException {
         utility.showSnackBar(context, "Registration failed!");
       }
       Navigator.pop(context);
