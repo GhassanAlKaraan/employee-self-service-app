@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:new_ess/components/continue_with_google.dart';
 import 'package:new_ess/components/my_button.dart';
+import 'package:new_ess/pages/forgot_password_page.dart';
 import '../components/my_textfield.dart';
 import '../components/register_now_member.dart';
 import '../utilities/utility.dart';
@@ -99,12 +100,20 @@ class _LoginPageState extends State<LoginPage> {
 
                 //forgot password?
                 const SizedBox(height: 10),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.symmetric(horizontal: 25),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Text("Forgot password?", style: TextStyle(fontSize: 14))
+                      GestureDetector(
+                          onTap: () => Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      ForgotPasswordPage(),
+                                ),
+                              ),
+                          child: const Text("Forgot password?",
+                              style: TextStyle(fontSize: 14)))
                     ],
                   ),
                 ),
