@@ -26,7 +26,8 @@ class _RegisterPageState extends State<RegisterPage> {
     var utility = Utility();
 
     //Text fields controllers
-    final usernameController = TextEditingController();
+    // TODO: uncomment this controller when adding the username text editor
+    //final usernameController = TextEditingController();
     final emailController = TextEditingController();
     final passwordController = TextEditingController();
     final confirmPasswordController = TextEditingController();
@@ -83,11 +84,13 @@ class _RegisterPageState extends State<RegisterPage> {
 
                 // Username text field
                 const SizedBox(height: 30),
-                MyTextField(
-                  controller: usernameController,
-                  hintText: 'Username',
-                  obscureText: false,
-                ),
+
+                // TODO: save user name in firestore.
+                // MyTextField(
+                //   controller: usernameController,
+                //   hintText: 'Username',
+                //   obscureText: false,
+                // ),
 
                 // email text field
                 const SizedBox(height: 10),
