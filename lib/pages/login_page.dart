@@ -70,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
                     image: AssetImage(
                       'assets/images/logos/gtsLogo.png',
                     ),
-                    height: 120),
+                    height: 100),
 
                 //welcome message
                 const SizedBox(height: 20),
@@ -117,11 +117,11 @@ class _LoginPageState extends State<LoginPage> {
                 ),
 
                 //or continue with
-                const SizedBox(height: 20),
+                const SizedBox(height: 40),
                 const ContinueGoogle(),
 
                 // not a member? register now
-                const SizedBox(height: 40),
+                const SizedBox(height: 80),
                 GestureDetector(
                   onTap: widget.onTap,
                   child: const RegisterNow(),

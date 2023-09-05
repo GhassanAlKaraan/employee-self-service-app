@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:new_ess/components/square_tile.dart';
+import 'package:new_ess/services/auth_service.dart';
 
 class ContinueGoogle extends StatelessWidget {
   const ContinueGoogle({Key? key}) : super(key: key);
@@ -26,7 +27,9 @@ class ContinueGoogle extends StatelessWidget {
               ),
             ),
 
-            const SquareTile(imagePath: 'assets/images/logos/google.png'),
+            SquareTile(
+                onTap: () => AuthService().signInWithGoogle(),
+                imagePath: 'assets/images/logos/google.png'),
             const SizedBox(width: 10,),
             Expanded(
               child: Divider(

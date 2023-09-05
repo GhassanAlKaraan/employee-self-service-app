@@ -70,7 +70,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     image: AssetImage(
                       'assets/images/logos/gtsLogo.png',
                     ),
-                    height: 120),
+                    height: 100),
 
                 //welcome message
                 const SizedBox(height: 20),
