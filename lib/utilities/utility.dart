@@ -18,17 +18,17 @@ class Utility {
       barrierDismissible: false, // Prevents closing by tapping outside
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text(message, style: TextStyle(color: Colors.red,),),
+          title: Text(message),
           //content: Text('This is your alert message.'),
           actions: [
             TextButton(
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
               onPressed: () {
                 Navigator.of(context).pop(); // Close the dialog
               },
             ),
             TextButton(
-              child: Text('OK'),
+              child: const Text('OK'),
               onPressed: () {
                 // Add your OK button action here
                 customFunction();
@@ -47,11 +47,11 @@ class Utility {
       barrierDismissible: false, // Prevents closing by tapping outside
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Alert Title'),
+          title: const Text('Alert Title'),
           //content: Text('This is your alert message.'),
           actions: [
             TextButton(
-              child: Text('OK'),
+              child: const Text('OK'),
               onPressed: () {
                 Navigator.of(context).pop(); // Close the dialog
               },

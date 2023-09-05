@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("User Authenticated: " + user.email.toString()),
+        title: Text("User Authenticated: ${user.email}"),
         actions: [
           IconButton(
             onPressed: signOut,

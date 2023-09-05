@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:new_ess/components/continue_with_google.dart';
@@ -30,10 +32,7 @@ class _RegisterPageState extends State<RegisterPage> {
     final confirmPasswordController = TextEditingController();
 
 
-
     //Register User
-
-
     void signUp() async{
       showDialog(
         context: context,
@@ -48,6 +47,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
         if(passwordController.text == confirmPasswordController.text){
           await FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailController.text, password: passwordController.text);
+          Navigator.pop(context);
         }else{
           utility.showSnackBar(context, "Passwords do not match!");
         }
