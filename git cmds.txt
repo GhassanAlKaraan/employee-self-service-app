@@ -1,0 +1,15 @@
+Push new repo to github:
+
+git init -b main
+git remote add origin /path/to/origin.git
+git add .
+git commit -m "initial commit"
+git push origin main
+
+Change branch:
+
+git branch -m master main
+git fetch origin
+git branch -u origin/main main
+git remote set-head origin -a
+
