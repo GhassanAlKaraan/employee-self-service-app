@@ -27,6 +27,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
+
   //dispose text fields
   @override
   void dispose() {
@@ -39,6 +40,13 @@ class _RegisterPageState extends State<RegisterPage> {
 
   //Register User
   Future signUp() async {
+
+    //Validate user info
+    if(!isInfoNotEmpty()){
+      return;
+    }
+
+    //Show loading animation
     showDialog(
       context: context,
       builder: (context) {
@@ -54,20 +62,26 @@ class _RegisterPageState extends State<RegisterPage> {
             email: emailController.text, password: passwordController.text);
       } else {
         utility.showSnackBar(context, "Passwords do not match!");
+        //Stop loading animation
+        Navigator.pop(context);
+        return;
       }
     } on FirebaseAuthException catch(e){
       utility.showSnackBar(context, "${e.message}");
+      //Stop loading animation
+      Navigator.pop(context);
+      return;
     }
+    //Stop loading animation
     Navigator.pop(context);
 
-    //add users details
-    // TODO: Don't let the user click if the fields are still empty/invalid
+    // add users details to firestore
+    // TODO: Validate info before adding to the firestore
     try{
       await addUserDetails(usernameController.text.trim(), emailController.text.trim());
     } catch(e){
       utility.showSnackBar(context, e.toString());
     }
-
   }
 
   Future<void> addUserDetails(String username, String email) async {
@@ -81,6 +95,16 @@ class _RegisterPageState extends State<RegisterPage> {
       print('Error adding user details: $e');
     }
   }
+
+  bool isInfoNotEmpty(){
+    if(usernameController.text.isEmpty || emailController.text.isEmpty || passwordController.text.isEmpty || confirmPasswordController.text.isEmpty){
+      utility.showSnackBar(context, "Fields can not be empty!");
+      return false;
+    }else{
+      return true;
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
