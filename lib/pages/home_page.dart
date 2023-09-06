@@ -32,15 +32,10 @@ class HomePage extends StatelessWidget {
             onPressed: signOut,
             icon: const Icon(Icons.logout),
           ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.android),
-          ),
         ],
       ),
       body: Center(
 
-        // TODO: The button does what?
         child: MyIconButton(onTap: (){}),
       ),
     );

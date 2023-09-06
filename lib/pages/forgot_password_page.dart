@@ -27,6 +27,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Reset Password"),
+      ),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Center(
@@ -47,13 +50,17 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
 
                 //Message
                 const SizedBox(height: 40),
-                // TODO: make the text in 2 lines
-                const Text(
-                  "Receive an email to Reset your Password",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 25.0),
+                  child: Text(
+                    "Receive an email to Reset your Password",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
 

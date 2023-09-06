@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class MyIconButton extends StatelessWidget {
-
   final Function()? onTap;
-  MyIconButton({super.key, required this.onTap});
+
+  const MyIconButton({super.key, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +20,13 @@ class MyIconButton extends StatelessWidget {
             boxShadow: [
               BoxShadow(
                   color: Colors.grey,
-                  offset: Offset(5.0, 5.0),
-                  blurRadius: 1,
+                  offset: Offset(4.0, 4.0),
+                  blurRadius: 5.0,
                   spreadRadius: 1),
               BoxShadow(
                   color: Colors.red,
-                  offset: Offset(-5.0, -5.0),
-                  blurRadius:1,
+                  offset: Offset(-4.0, -4.0),
+                  blurRadius: 5.0,
                   spreadRadius: 1),
             ]),
         child: const Icon(Icons.android, size: 50),

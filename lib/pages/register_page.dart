@@ -125,7 +125,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 const ContinueGoogle(),
 
                 // not a member? register now
-                const SizedBox(height: 20),
+                const SizedBox(height: 45),
                 GestureDetector(onTap: widget.onTap, child: const LoginNow()),
               ],
             ),
