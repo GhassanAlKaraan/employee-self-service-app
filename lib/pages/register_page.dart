@@ -58,10 +58,11 @@ class _RegisterPageState extends State<RegisterPage> {
     } on FirebaseAuthException catch(e){
       utility.showSnackBar(context, "${e.message}");
     }
-
+    // TODO: pop the animation after sign up
     Navigator.pop(context);
     //add users details
     try{
+      //TODO: add the info to firestore is still not working
       addUserDetails(usernameController.text.trim(), emailController.text.trim());
 
     } catch(e){
