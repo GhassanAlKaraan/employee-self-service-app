@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:new_ess/utilities/utility.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
-  ForgotPasswordPage({super.key});
+  const ForgotPasswordPage({super.key});
 
   @override
   State<ForgotPasswordPage> createState() => _ForgotPasswordPageState();
@@ -46,19 +46,19 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 const Icon(Icons.email_outlined, size: 80),
 
                 //Message
-                const SizedBox(height: 20),
+                const SizedBox(height: 40),
                 // TODO: make the text in 2 lines
                 const Text(
                   "Receive an email to Reset your Password",
                   style: TextStyle(
-                    fontSize: 30,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
                   ),
                 ),
 
                 //Text field
-                const SizedBox(height: 30),
+                const SizedBox(height: 20),
                 MyTextField(
                     controller: emailController,
                     hintText: "Email address",
