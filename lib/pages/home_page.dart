@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
     }
 
     void signOut() {
-      utility.showAlertDialog(context, firebaseLogout, "Logout?");
+      utility.showAlertDialog(context, firebaseLogout, "Logout");
     }
 
     return Scaffold(

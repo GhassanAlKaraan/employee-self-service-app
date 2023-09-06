@@ -1,5 +1,4 @@
-// ignore_for_file: use_build_context_synchronously
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:new_ess/components/continue_with_google.dart';
@@ -19,45 +18,72 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  //Snack instance
+  var utility = Utility();
+
+  //Text fields controllers
+  final usernameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
+
+  //dispose text fields
   @override
-  Widget build(BuildContext context) {
+  void dispose() {
+    usernameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    super.dispose();
+  }
 
-    //Snack instance
-    var utility = Utility();
-
-    //Text fields controllers
-    // TODO: uncomment this controller when adding the username text editor
-    //final usernameController = TextEditingController();
-    final emailController = TextEditingController();
-    final passwordController = TextEditingController();
-    final confirmPasswordController = TextEditingController();
-
-
-    //Register User
-    void signUp() async{
-      showDialog(
-        context: context,
-        builder: (context) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        },
-      );
-
-      try{
-
-        if(passwordController.text == confirmPasswordController.text){
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailController.text, password: passwordController.text);
-          Navigator.pop(context);
-        }else{
-          utility.showSnackBar(context, "Passwords do not match!");
-        }
-      } on FirebaseAuthException {
-        utility.showSnackBar(context, "Registration failed!");
+  //Register User
+  Future signUp() async {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+    //Create user and authenticate
+    try {
+      if (passwordController.text == confirmPasswordController.text) {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+            email: emailController.text, password: passwordController.text);
+      } else {
+        utility.showSnackBar(context, "Passwords do not match!");
       }
-      Navigator.pop(context);
+    } on FirebaseAuthException catch(e){
+      utility.showSnackBar(context, "${e.message}");
     }
 
+    Navigator.pop(context);
+    //add users details
+    try{
+      addUserDetails(usernameController.text.trim(), emailController.text.trim());
+
+    } catch(e){
+      print(e.toString());
+    }
+
+  }
+
+  Future<void> addUserDetails(String username, String email) async {
+    try {
+      await FirebaseFirestore.instance.collection('users').add({
+        'username': username,
+        'email': email,
+      });
+      print('User details added successfully.');
+    } catch (e) {
+      print('Error adding user details: $e');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -84,13 +110,11 @@ class _RegisterPageState extends State<RegisterPage> {
 
                 // Username text field
                 const SizedBox(height: 30),
-
-                // TODO: save user name in firestore.
-                // MyTextField(
-                //   controller: usernameController,
-                //   hintText: 'Username',
-                //   obscureText: false,
-                // ),
+                MyTextField(
+                  controller: usernameController,
+                  hintText: 'Username',
+                  obscureText: false,
+                ),
 
                 // email text field
                 const SizedBox(height: 10),
@@ -118,14 +142,17 @@ class _RegisterPageState extends State<RegisterPage> {
 
                 // Sign in button
                 const SizedBox(height: 20),
-                MyButton(onTap: signUp, txt: "Sign Up",),
+                MyButton(
+                  onTap: signUp,
+                  txt: "Sign Up",
+                ),
 
                 //or continue with
                 const SizedBox(height: 20),
                 const ContinueGoogle(),
 
                 // not a member? register now
-                const SizedBox(height: 45),
+                const SizedBox(height: 20),
                 GestureDetector(onTap: widget.onTap, child: const LoginNow()),
               ],
             ),

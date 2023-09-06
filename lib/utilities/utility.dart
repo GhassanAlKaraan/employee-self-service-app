@@ -19,16 +19,17 @@ class Utility {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text(message),
-          //content: Text('This is your alert message.'),
+          content: const Text('Are you sure?', style: TextStyle(fontSize: 20),),
           actions: [
+
             TextButton(
-              child: const Text('Cancel'),
+              child: const Text('Cancel', style: TextStyle(fontSize: 18),),
               onPressed: () {
                 Navigator.of(context).pop(); // Close the dialog
               },
             ),
             TextButton(
-              child: const Text('OK'),
+              child: const Text('YES', style: TextStyle(fontSize: 18),),
               onPressed: () {
                 // Add your OK button action here
                 customFunction();

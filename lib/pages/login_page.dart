@@ -20,43 +20,53 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
+  //Snack instance
+  var utility = Utility();
+
+  //Text fields controllers
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
+  //Button method
+  void signIn() async {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailController.text.toString(),
+          password: passwordController.text);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        utility.showSnackBar(context, "Login Failed. User not found.");
+      } else if (e.code == 'invalid-email') {
+        utility.showSnackBar(context, "Login Failed. Invalid email.");
+      } else {
+        utility.showSnackBar(
+            context, "Login Failed. Check your credentials.");
+      }
+    }
+
+    Navigator.pop(context);
+  }
+
   @override
   Widget build(BuildContext context) {
-    //Snack instance
-    var utility = Utility();
 
-    //Text fields controllers
-    final emailController = TextEditingController();
-    final passwordController = TextEditingController();
-
-    //Button method
-    void signIn() async {
-      showDialog(
-        context: context,
-        builder: (context) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        },
-      );
-
-      try {
-        await FirebaseAuth.instance.signInWithEmailAndPassword(
-            email: emailController.text.toString(),
-            password: passwordController.text);
-      } on FirebaseAuthException catch (e) {
-        if (e.code == 'user-not-found') {
-          utility.showSnackBar(context, "Login Failed. User not found.");
-        } else if (e.code == 'invalid-email') {
-          utility.showSnackBar(context, "Login Failed. Invalid email.");
-        } else {
-          utility.showSnackBar(
-              context, "Login Failed. Check your credentials.");
-        }
-      }
-
-      Navigator.pop(context);
-    }
 
     return Scaffold(
       body: SingleChildScrollView(
