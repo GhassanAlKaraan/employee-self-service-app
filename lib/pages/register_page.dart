@@ -76,7 +76,6 @@ class _RegisterPageState extends State<RegisterPage> {
     Navigator.pop(context);
 
     // add users details to firestore
-    // TODO: Validate info before adding to the firestore
     try{
       await addUserDetails(usernameController.text.trim(), emailController.text.trim());
     } catch(e){
