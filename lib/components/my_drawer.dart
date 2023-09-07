@@ -14,31 +14,11 @@ class MyDrawer extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          const DrawerHeader(
-            decoration: BoxDecoration(
-              //color: Colors.red[900],
+          DrawerHeader(
+            decoration: const BoxDecoration(
               color: Colors.white,
             ),
-            child: Image(
-              image: AssetImage('assets/images/logos/gtsLogo.png'),
-            ),
-            // child: const Column(
-            //   mainAxisAlignment: MainAxisAlignment.center,
-            //   children: [
-            //     CircleAvatar(
-            //       radius: 40,
-            //       backgroundImage: AssetImage('assets/images/logos/apple.png'),
-            //     ),
-            //     SizedBox(height: 10),
-            //     Text(
-            //       'John Doe',
-            //       style: TextStyle(
-            //         color: Colors.white,
-            //         fontSize: 20,
-            //       ),
-            //     ),
-            //   ],
-            // ),
+            child: Image.asset('assets/images/logos/gtsLogo.png'),
           ),
           Container(
             padding: const EdgeInsets.all(20),
