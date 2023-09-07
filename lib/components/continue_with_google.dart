@@ -15,7 +15,7 @@ class ContinueGoogle extends StatelessWidget {
           children: [
             Expanded(
               child: Divider(
-                thickness: 0.5,
+                thickness: 1.0,
                 color: Colors.grey[400],
               ),
             ),
@@ -33,16 +33,13 @@ class ContinueGoogle extends StatelessWidget {
             const SizedBox(width: 10,),
             Expanded(
               child: Divider(
-                thickness: 0.5,
+                thickness: 1.0,
                 color: Colors.grey[400],
               ),
             ),
           ],
         ),
       ),
-      //const SizedBox(height: 20),
-      // google sign in button
-      //const SquareTile(imagePath: 'assets/images/logos/google.png'),
     ]);
   }
 }

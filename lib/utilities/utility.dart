@@ -42,24 +42,8 @@ class Utility {
     );
   }
 
-  Future<void> showAlert(BuildContext context) async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false, // Prevents closing by tapping outside
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Alert Title'),
-          //content: Text('This is your alert message.'),
-          actions: [
-            TextButton(
-              child: const Text('OK'),
-              onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
-              },
-            ),
-          ],
-        );
-      },
-    );
+  Future<void> goToPage(BuildContext context, Widget page) async {
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => page));
   }
 }
