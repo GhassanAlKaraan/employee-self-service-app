@@ -39,6 +39,7 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   //Register User
+  //TODO: Don't let the user register more than x times a day, to prevent abuse
   Future signUp() async {
 
     //Validate user info
