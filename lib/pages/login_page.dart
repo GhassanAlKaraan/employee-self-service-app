@@ -37,14 +37,7 @@ class _LoginPageState extends State<LoginPage> {
 
   //Button method
   void signIn() async {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      },
-    );
+    utility.showLoading(context);
 
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(

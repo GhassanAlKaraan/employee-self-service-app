@@ -55,8 +55,6 @@ class _HomePageState extends State<HomePage> {
             ),
             MyButton(
               onTap: () {
-                // Navigator.of(context).push(MaterialPageRoute(
-                //     builder: (context) => const AllUsersPage()));
                 utility.goToPage(context, const AllUsersPage());
               },
               txt: "See All Users",

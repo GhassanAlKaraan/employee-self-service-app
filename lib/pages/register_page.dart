@@ -48,14 +48,8 @@ class _RegisterPageState extends State<RegisterPage> {
     }
 
     //Show loading animation
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      },
-    );
+    utility.showLoading(context);
+
     //Create user and authenticate
     try {
       if (passwordController.text == confirmPasswordController.text) {

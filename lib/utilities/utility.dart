@@ -46,4 +46,16 @@ class Utility {
     Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => page));
   }
+
+  void showLoading(BuildContext context){
+    //Show loading animation
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+  }
 }

@@ -85,14 +85,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   }
 
   void resetPassword() async {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      },
-    );
+    utility.showLoading(context);
 
     try {
       await FirebaseAuth.instance

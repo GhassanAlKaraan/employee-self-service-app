@@ -15,7 +15,7 @@ class _AllUsersPageState extends State<AllUsersPage> {
 
   //DB READ: Get IDs and Fill the List
   Future getDocIds() async {
-    await FirebaseFirestore.instance.collection('users').get().then(
+    await FirebaseFirestore.instance.collection('users').orderBy('username', descending: true).get().then(
           (snapshot) => snapshot.docs.forEach((document) {
             docIDs.add(document.reference.id);
           }),
