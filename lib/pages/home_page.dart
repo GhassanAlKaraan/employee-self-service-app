@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:new_ess/components/my_button.dart';
 import 'package:new_ess/pages/all_users_page.dart';
 
+import '../components/my_drawer.dart';
 import '../utilities/utility.dart';
 
 class HomePage extends StatefulWidget {
@@ -36,9 +37,13 @@ class _HomePageState extends State<HomePage> {
         title: user.displayName != null
             ? Text("Welcome ${user.displayName}")
             : Text("Welcome ${user.email}"),
-        leading: IconButton(
-          icon: const Icon(Icons.menu),
-          onPressed: () {},
+        leading: Builder(
+          builder: (context) {
+            return IconButton(icon: const Icon(Icons.menu),
+                onPressed: () {
+              Scaffold.of(context).openDrawer();
+            });
+          }
         ),
         actions: [
           IconButton(
@@ -47,6 +52,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
+      drawer: MyDrawer(),
       body: Center(
         child: Column(
           children: [
