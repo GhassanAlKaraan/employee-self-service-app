@@ -27,38 +27,32 @@ class MyDrawer extends StatelessWidget {
               runSpacing: 12,
               children: [
                 ListTile(
-                  leading: const Icon(Icons.home),
-                  title: const Text('Home'),
+                  leading: const Icon(Icons.group),
+                  title: const Text('Show All Users'),
                   onTap: () {
-                    // Handle the tap event for Home
-                  },
-                ),
-                ListTile(
-                  leading: const Icon(Icons.settings),
-                  title: const Text('Settings'),
-                  onTap: () {
-                    // Handle the tap event for Settings
-                  },
-                ),
-                ListTile(
-                  leading: const Icon(Icons.chat),
-                  title: const Text('Chat'),
-                  onTap: () {
-                    // Handle the tap event for Chat
+                    Navigator.pop(context);
+                    utility.goToPage(context, const AllUsersPage());
                   },
                 ),
                 Divider(
                   thickness: 1.0,
                   color: Colors.grey[500],
                 ),
-                //See all users
                 ListTile(
-                  leading: const Icon(Icons.group),
-                  title: const Text('All Users'),
+                  leading: const Icon(Icons.settings),
+                  title: const Text('Settings (Coming Soon)'),
                   onTap: () {
-                    utility.goToPage(context, const AllUsersPage());
+                    // Handle the tap event for Settings
                   },
                 ),
+                ListTile(
+                  leading: const Icon(Icons.chat),
+                  title: const Text('Chat (Coming Soon)'),
+                  onTap: () {
+                    // Handle the tap event for Chat
+                  },
+                ),
+
               ],
             ),
           )
