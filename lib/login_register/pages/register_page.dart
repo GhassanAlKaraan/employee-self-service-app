@@ -22,7 +22,7 @@ class _RegisterPageState extends State<RegisterPage> {
   var utility = Utility();
 
   //Text fields controllers
-  final usernameController = TextEditingController();
+  final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
@@ -31,7 +31,7 @@ class _RegisterPageState extends State<RegisterPage> {
   //dispose text fields
   @override
   void dispose() {
-    usernameController.dispose();
+    nameController.dispose();
     emailController.dispose();
     passwordController.dispose();
     confirmPasswordController.dispose();
@@ -72,26 +72,26 @@ class _RegisterPageState extends State<RegisterPage> {
 
     // add users details to firestore
     try{
-      await addUserDetails(usernameController.text.trim(), emailController.text.trim());
+      await addUserDetails(nameController.text.trim(), emailController.text.trim());
     } catch(e){
       utility.showSnackBar(context, e.toString());
     }
   }
 
-  Future<void> addUserDetails(String username, String email) async {
+  // TODO - manage - FIRESTORE CRUD: add data to firestore
+  Future<void> addUserDetails(String name, String email) async {
     try {
       await FirebaseFirestore.instance.collection('users').add({
-        'username': username,
+        'name': name,
         'email': email,
       });
-      print('User details added successfully.');
     } catch (e) {
-      print('Error adding user details: $e');
+      utility.showSnackBar(context, e.toString());
     }
   }
 
   bool isInfoNotEmpty(){
-    if(usernameController.text.isEmpty || emailController.text.isEmpty || passwordController.text.isEmpty || confirmPasswordController.text.isEmpty){
+    if(nameController.text.isEmpty || emailController.text.isEmpty || passwordController.text.isEmpty || confirmPasswordController.text.isEmpty){
       utility.showSnackBar(context, "Fields can not be empty!");
       return false;
     }else{
@@ -129,8 +129,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 // Username text field
                 const SizedBox(height: 30),
                 MyTextField(
-                  controller: usernameController,
-                  hintText: 'Username',
+                  controller: nameController,
+                  hintText: 'Name',
                   obscureText: false,
                 ),
 

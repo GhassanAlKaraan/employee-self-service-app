@@ -14,7 +14,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   //utility
-  final utility = Utility();
+  final homeUtility = Utility();
 
   //Get info about the user
   final user = FirebaseAuth.instance.currentUser!;
@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
     }
 
     void signOut() {
-      utility.showAlertDialog(context, firebaseLogout, "Logout");
+      homeUtility.showAlertDialog(context, firebaseLogout, "Logout");
     }
 
     return Scaffold(
@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
             ),
             MyButton(
               onTap: () {
-                utility.goToPage(context, const AllUsersPage());
+                homeUtility.goToPage(context, const AllUsersPage());
               },
               txt: "See All Users",
             ),
