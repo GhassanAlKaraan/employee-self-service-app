@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class GetUserName extends StatelessWidget {
   GetUserName({super.key, required this.documentId});
 
-  //We have the document id, we need to retreive the user' name.
+  //We have the document id, we need to retrieve the user's name.
 
   final String documentId;
 

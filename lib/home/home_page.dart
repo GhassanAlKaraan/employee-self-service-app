@@ -1,10 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:new_ess/components/my_button.dart';
-import 'package:new_ess/pages/all_users_page.dart';
-
-import '../components/my_drawer.dart';
-import '../utilities/utility.dart';
+import '../login_register/components/my_button.dart';
+import '../read_users page/all_users_page.dart';
+import 'components/my_drawer.dart';
+import 'home utilities/utility.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);

@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:new_ess/components/continue_with_google.dart';
-import 'package:new_ess/components/my_button.dart';
+import '../components/continue_with_google.dart';
+import '../components/my_button.dart';
 import '../components/my_textfield.dart';
 import '../components/signin_now_member.dart';
-import '../utilities/utility.dart';
+import '../login_register utilities/utility.dart';
 
 class RegisterPage extends StatefulWidget {
   //onTap Function for the clickable "Login now" Text

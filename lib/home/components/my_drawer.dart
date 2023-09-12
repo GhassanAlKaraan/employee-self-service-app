@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:new_ess/pages/all_users_page.dart';
-import 'package:new_ess/utilities/utility.dart';
+
+import '../../read_users page/all_users_page.dart';
+import '../home utilities/utility.dart';
 
 class MyDrawer extends StatelessWidget {
   MyDrawer({super.key});

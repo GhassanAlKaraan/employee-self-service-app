@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:new_ess/services/auth_gate.dart';
 import 'firebase_options.dart';
+import 'login_register/services/auth_gate.dart';
 
 
 void main() async{

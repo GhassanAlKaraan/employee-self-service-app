@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:new_ess/read%20data/get_user_name.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'read data/get_user_name.dart';
 
 class AllUsersPage extends StatefulWidget {
   const AllUsersPage({super.key});
@@ -44,7 +44,7 @@ class _AllUsersPageState extends State<AllUsersPage> {
                       itemCount: docIDs.length,
                       itemBuilder: (context, index) {
                         return Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(5.0),
                           child: ListTile(
                               tileColor: Colors.grey[300],
                               title: GetUserName(documentId: docIDs[index])),

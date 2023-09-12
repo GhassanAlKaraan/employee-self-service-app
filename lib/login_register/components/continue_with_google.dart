@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:new_ess/components/square_tile.dart';
-import 'package:new_ess/services/google_auth_service.dart';
+import '../services/google_auth_service.dart';
+import 'square_tile.dart';
 
 class ContinueGoogle extends StatelessWidget {
   const ContinueGoogle({Key? key}) : super(key: key);

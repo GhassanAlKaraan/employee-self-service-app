@@ -2,12 +2,12 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:new_ess/components/continue_with_google.dart';
-import 'package:new_ess/components/my_button.dart';
-import 'package:new_ess/pages/forgot_password_page.dart';
+import '../components/continue_with_google.dart';
+import '../components/my_button.dart';
 import '../components/my_textfield.dart';
 import '../components/register_now_member.dart';
-import '../utilities/utility.dart';
+import '../login_register utilities/utility.dart';
+import 'forgot_password_page.dart';
 
 class LoginPage extends StatefulWidget {
   //onTap Function for the clickable "Register now" Text
