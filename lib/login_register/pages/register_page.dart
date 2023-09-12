@@ -40,6 +40,9 @@ class _RegisterPageState extends State<RegisterPage> {
 
   //Register User
   //TODO: Don't let the user register more than x times a day, to prevent abuse
+  //TODO: User must validate email address before logging in
+  //TODO: Password and Email validations separate from the sign up, remove some pressure off the signUp method
+
   Future signUp() async {
 
     //Validate user info
@@ -79,6 +82,7 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   // TODO - manage - FIRESTORE CRUD: add data to firestore
+  // NOTE: the firebase handles the uniqueness of each user by their email
   Future<void> addUserDetails(String name, String email) async {
     try {
       await FirebaseFirestore.instance.collection('users').add({
@@ -89,6 +93,7 @@ class _RegisterPageState extends State<RegisterPage> {
       utility.showSnackBar(context, e.toString());
     }
   }
+
 
   bool isInfoNotEmpty(){
     if(nameController.text.isEmpty || emailController.text.isEmpty || passwordController.text.isEmpty || confirmPasswordController.text.isEmpty){

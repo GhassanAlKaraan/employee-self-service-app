@@ -16,9 +16,8 @@ class GoogleAuthService {
         idToken: gAuth.idToken,
       );
 
-      //Save name and email to firestore
+      //Optional: Save name and email to firestore
       addUserDetails(gUser.displayName.toString(), gUser.email);
-
 
       //Finally, Sign in
       return await FirebaseAuth.instance.signInWithCredential(credential);
@@ -30,10 +29,20 @@ class GoogleAuthService {
   // TODO - manage - FIRESTORE CRUD: add data to firestore
   Future<void> addUserDetails(String name, String email) async {
     try {
-      await FirebaseFirestore.instance.collection('users').add({
+      //This once is used to just add info with random document ID
+
+      // await FirebaseFirestore.instance.collection('users').add({
+      //   'name': name,
+      //   'email': email,
+      // });
+
+      // Each new record added is unique by email address.
+      // It sets document ID as email to prevent duplicates
+      await FirebaseFirestore.instance.collection('users').doc(email).set({
         'name': name,
         'email': email,
       });
+
     } catch (e) {
       print("LOGIN ERROR ----- GOOGLE ");
     }
