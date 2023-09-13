@@ -1,10 +1,7 @@
 import 'dart:async';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:new_ess/home/home_page.dart';
-import 'package:new_ess/login_register/pages/login_page.dart';
-
 import '../components/my_button.dart';
 import '../components/my_button_2.dart';
 import '../login_register utilities/utility.dart';
@@ -32,7 +29,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
       sendVerificationEmail();
 
       Timer.periodic(
-        Duration(seconds: 3),
+        const Duration(seconds: 3),
         (timer) => checkEmailVerified(),
       );
     }
@@ -58,7 +55,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
 
 
       setState(() => canResendEmail = false);
-      await Future.delayed(Duration(seconds: 10));
+      await Future.delayed(const Duration(seconds: 20));
       setState(() => canResendEmail = true);
     } catch (e) {
       utility.showSnackBar(context, e.toString());
@@ -76,7 +73,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
       ? HomePage()
       : Scaffold(
           appBar: AppBar(
-            title: const Text("Verify your email"),
+            title: const Text("Verify Your Email"),
           ),
           body: SingleChildScrollView(
             child: SafeArea(
@@ -94,14 +91,14 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
 
                     //Icon
                     const SizedBox(height: 20),
-                    const Icon(Icons.verified_user, size: 80),
+                    const Row(mainAxisAlignment:MainAxisAlignment.center,children: [Icon(Icons.verified, size: 80,), SizedBox(width: 10,),Icon(Icons.mail, size: 80),],),
 
                     //Message
                     const SizedBox(height: 40),
                     const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 25.0),
                       child: Text(
-                        "Check your inbox to verify your account.",
+                        "A verification email has been sent to your email address...",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 20,
@@ -114,8 +111,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                     // Button
                     const SizedBox(height: 50),
 
-                    // TODO: Disable the button for a few seconds before the user can resend email.
-                    // The button wont work for 10 seconds, but we need to change the color maybe
+                    // TODO: Change the button color when it's disabled
                     MyButton(onTap: canResendEmail? resendEmail : (){utility.showSnackBar(context, "Wait before resending email");}, txt: "Re-send Email"),
 
                     const SizedBox(height: 20),
@@ -135,7 +131,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
       sendVerificationEmail();
       // End
 
-      utility.showSnackBar(context, "TODO --- Email re-sent");
+      utility.showSnackBar(context, "Verification resent, check your inbox");
     }catch (e) {
       utility.showSnackBar(context, e.toString());
     }

@@ -18,6 +18,7 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+
   //Snack instance
   var utility = Utility();
 
@@ -26,7 +27,6 @@ class _RegisterPageState extends State<RegisterPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
-
 
   //dispose text fields
   @override
@@ -43,52 +43,75 @@ class _RegisterPageState extends State<RegisterPage> {
   //TODO: Password and Email validations separate from the sign up, remove some pressure off the signUp method
 
   Future signUp() async {
-
-    //Validate user info
-    if(!isInfoNotEmpty()){
-      return;
+    if (!isInfoNotEmpty() && !passwordsMatch()) {
+      return; // Input Validation
     }
-
-    //Show loading animation
+    //TODO: start loading animation
     utility.showLoading(context);
 
-    //Create user and authenticate
     try {
-      if (passwordController.text == confirmPasswordController.text) {
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
-            email: emailController.text.trim(), password: passwordController.text.trim());
-        Navigator.pop(context);
-      } else {
-        utility.showSnackBar(context, "Passwords do not match!");
-        //Stop loading animation
-        Navigator.pop(context);
-        return;
-      }
-    } on FirebaseAuthException catch(e){
-      utility.showSnackBar(context, "${e.message}");
-      //Stop loading animation
-      Navigator.pop(context);
-      return;
-    }
-      // TODO: The loading animation is not popping off
-      //Stop loading animation
-      Navigator.pop(context);
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
 
+      //TODO: stop loading animation
+      Navigator.of(context).pop();
 
-
-    // add users details to firestore
-    try{
+      //TODO: Move it to the verify_email_page, the info must be added only after successful verification
       await addUserDetails(nameController.text.trim(), emailController.text.trim());
-    } catch(e){
+
+
+
+    } on FirebaseAuthException catch (e) {
       utility.showSnackBar(context, e.toString());
     }
+
   }
+
+  // Future signUp() async {
+  //
+  //   //Validate user info
+  //   if(!isInfoNotEmpty()){return;}
+  //
+  //
+  //   utility.showLoading(context);
+  //
+  //   //Create user and authenticate
+  //   try {
+  //     if (passwordController.text == confirmPasswordController.text) {
+  //       await FirebaseAuth.instance.createUserWithEmailAndPassword(
+  //           email: emailController.text.trim(), password: passwordController.text.trim());
+  //       // TODO: the code is not executing after this line, inside this function
+  //       Navigator.pop(context);
+  //     } else {
+  //       utility.showSnackBar(context, "Passwords do not match!");
+  //       //Stop loading animation
+  //       Navigator.pop(context);
+  //       return;
+  //     }
+  //   } on FirebaseAuthException catch(e){
+  //     utility.showSnackBar(context, e.toString());
+  //     //Stop loading animation
+  //     Navigator.pop(context);
+  //     return;
+  //   }
+  //
+  //   // Add users details to firestore
+  //   try{
+  //     await addUserDetails(nameController.text.trim(), emailController.text.trim());
+  //   } catch(e){
+  //     utility.showSnackBar(context, e.toString());
+  //   }
+  // }
 
   // TODO - manage - FIRESTORE CRUD: add data to firestore
   // NOTE: the firebase handles the uniqueness of each user by their email
+
+  //TODO: Move it to the verify_email_page, the info must be added only after successful verification
   Future<void> addUserDetails(String name, String email) async {
     try {
-      await FirebaseFirestore.instance.collection('users').add({
+      await FirebaseFirestore.instance.collection('users').doc(email).set({
         'name': name,
         'email': email,
       });
@@ -97,16 +120,26 @@ class _RegisterPageState extends State<RegisterPage> {
     }
   }
 
-
-  bool isInfoNotEmpty(){
-    if(nameController.text.isEmpty || emailController.text.isEmpty || passwordController.text.isEmpty || confirmPasswordController.text.isEmpty){
+  bool isInfoNotEmpty() {
+    if (nameController.text.isEmpty ||
+        emailController.text.isEmpty ||
+        passwordController.text.isEmpty ||
+        confirmPasswordController.text.isEmpty) {
       utility.showSnackBar(context, "Fields can not be empty!");
       return false;
-    }else{
+    } else {
       return true;
     }
   }
 
+  bool passwordsMatch() {
+    if (passwordController.text == confirmPasswordController.text) {
+      return true;
+    } else {
+      utility.showSnackBar(context, "Passwords do not match!");
+      return false;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

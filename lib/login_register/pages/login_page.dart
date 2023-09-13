@@ -37,12 +37,15 @@ class _LoginPageState extends State<LoginPage> {
 
   //Button method
   void signIn() async {
+
     utility.showLoading(context);
 
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: emailController.text.trim(),
           password: passwordController.text.trim());
+
+      // Authentication was successful, so pop the loading screen
       Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -54,10 +57,6 @@ class _LoginPageState extends State<LoginPage> {
             context, "Login Failed. Check your credentials.");
       }
     }
-
-      // TODO: The loading animation is not popping off
-      Navigator.pop(context);
-
 
   }
 

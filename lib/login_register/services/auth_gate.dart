@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../../home/home_page.dart';
 import '../pages/verify_email_page.dart';
 import 'login_or_register.dart';
 
