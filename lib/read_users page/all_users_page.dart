@@ -67,11 +67,10 @@ class _AllUsersPageState extends State<AllUsersPage> {
                       itemCount: docIDs.length,
                       itemBuilder: (context, index) {
                         return Padding(
-                          padding: const EdgeInsets.all(5.0),
+                          padding: const EdgeInsets.all(6.0),
                           child: ListTile(
                               tileColor: Colors.grey[300],
-                              title:
-                                  GetUserName(documentId: docIDs[index])),
+                              title: GetUserName(documentId: docIDs[index])),
                         );
                       }),
             )

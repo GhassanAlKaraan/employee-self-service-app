@@ -40,7 +40,6 @@ class _RegisterPageState extends State<RegisterPage> {
 
   //Register User
   //TODO: Don't let the user register more than x times a day, to prevent abuse
-  //TODO: User must validate email address before logging in
   //TODO: Password and Email validations separate from the sign up, remove some pressure off the signUp method
 
   Future signUp() async {
@@ -58,6 +57,7 @@ class _RegisterPageState extends State<RegisterPage> {
       if (passwordController.text == confirmPasswordController.text) {
         await FirebaseAuth.instance.createUserWithEmailAndPassword(
             email: emailController.text.trim(), password: passwordController.text.trim());
+        Navigator.pop(context);
       } else {
         utility.showSnackBar(context, "Passwords do not match!");
         //Stop loading animation
@@ -70,8 +70,11 @@ class _RegisterPageState extends State<RegisterPage> {
       Navigator.pop(context);
       return;
     }
-    //Stop loading animation
-    Navigator.pop(context);
+      // TODO: The loading animation is not popping off
+      //Stop loading animation
+      Navigator.pop(context);
+
+
 
     // add users details to firestore
     try{

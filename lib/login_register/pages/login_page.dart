@@ -43,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: emailController.text.trim(),
           password: passwordController.text.trim());
-      //Navigator.pop(context);
+      Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         utility.showSnackBar(context, "Login Failed. User not found.");
@@ -55,7 +55,10 @@ class _LoginPageState extends State<LoginPage> {
       }
     }
 
-    Navigator.pop(context);
+      // TODO: The loading animation is not popping off
+      Navigator.pop(context);
+
+
   }
 
   @override
