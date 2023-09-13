@@ -28,7 +28,7 @@ class MyDrawer extends StatelessWidget {
               children: [
                 ListTile(
                   leading: const Icon(Icons.group),
-                  title: const Text('Show All Users'),
+                  title: const Text('Show All Users', style: TextStyle(fontSize: 18)),
                   onTap: () {
                     Navigator.pop(context);
                     utility.goToPage(context, const AllUsersPage());
@@ -38,16 +38,26 @@ class MyDrawer extends StatelessWidget {
                   thickness: 1.0,
                   color: Colors.grey[500],
                 ),
+                const SizedBox(height: 30,),
+                const Text("Coming Soon", style: TextStyle(fontSize: 22)),
+                const SizedBox(height: 50,),
                 ListTile(
                   leading: const Icon(Icons.settings),
-                  title: const Text('Settings (Coming Soon)'),
+                  title: const Text('Settings', style: TextStyle(fontSize: 18)),
                   onTap: () {
                     // Handle the tap event for Settings
                   },
                 ),
                 ListTile(
-                  leading: const Icon(Icons.chat),
-                  title: const Text('Chat (Coming Soon)'),
+                  leading: const Icon(Icons.time_to_leave_outlined),
+                  title: const Text('Pending leaves', style: TextStyle(fontSize: 18)),
+                  onTap: () {
+                    // Handle the tap event for Chat
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.time_to_leave),
+                  title: const Text('Approved leaves', style: TextStyle(fontSize: 18)),
                   onTap: () {
                     // Handle the tap event for Chat
                   },
