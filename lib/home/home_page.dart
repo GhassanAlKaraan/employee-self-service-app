@@ -6,7 +6,8 @@ import 'components/my_drawer.dart';
 import 'home utilities/utility.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key? key}) : super(key: key);
+
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();

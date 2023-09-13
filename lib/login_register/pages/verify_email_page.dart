@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:new_ess/home/home_page.dart';
@@ -44,10 +45,21 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
     });
 
     if (isEmailVerified) {
+      updateFirestore();
       timer?.cancel();
     }
   }
 
+  Future updateFirestore() async{
+    // Get current user email
+    final String userEmail = FirebaseAuth.instance.currentUser!.email.toString();
+
+    //Update the document
+    FirebaseFirestore.instance.collection("users").doc(userEmail).update({
+      "verified email": true,
+    });
+
+  }
   Future sendVerificationEmail() async {
     try {
       final user = FirebaseAuth.instance.currentUser!;
@@ -61,11 +73,37 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
       utility.showSnackBar(context, e.toString());
     }
   }
-
   @override
   void dispose() {
     timer?.cancel();
     super.dispose();
+  }
+  void resendEmail() async {
+    utility.showLoading(context);
+
+    try {
+      // Start
+      if(canResendEmail){
+        sendVerificationEmail();
+        utility.showSnackBar(context, "Verification resent, check your inbox");
+
+      }
+      else{
+        utility.showSnackBar(context, "You need to wait before resending");
+      }
+
+      // End
+
+    }catch (e) {
+      utility.showSnackBar(context, e.toString());
+    }
+    Navigator.pop(context);
+  }
+  void cancel() {
+    utility.showAlertDialog(context, firebaseLogout, "Cancel");
+  }
+  void firebaseLogout() {
+    FirebaseAuth.instance.signOut();
   }
 
   @override
@@ -123,27 +161,5 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
           ),
         );
 
-  void resendEmail() async {
-    utility.showLoading(context);
 
-    try {
-      // Start
-      sendVerificationEmail();
-      // End
-
-      utility.showSnackBar(context, "Verification resent, check your inbox");
-    }catch (e) {
-      utility.showSnackBar(context, e.toString());
-    }
-    Navigator.pop(context);
-  }
-
-  void cancel() {
-    utility.showAlertDialog(context, firebaseLogout, "Cancel");
-  }
-
-  //SIGN OUT method
-  void firebaseLogout() {
-    FirebaseAuth.instance.signOut();
-  }
 }
