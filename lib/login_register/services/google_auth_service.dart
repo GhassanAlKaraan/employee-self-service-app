@@ -26,17 +26,8 @@ class GoogleAuthService {
     }
   }
 
-  // TODO - manage - FIRESTORE CRUD: add data to firestore
   Future<void> addUserDetails(String name, String email) async {
     try {
-      //This once is used to just add info with random document ID
-
-      // await FirebaseFirestore.instance.collection('users').add({
-      //   'name': name,
-      //   'email': email,
-      // });
-
-      // Each new record added is unique by email address.
       // It sets document ID as email to prevent duplicates
       await FirebaseFirestore.instance.collection('users').doc(email).set({
         'name': name,
@@ -44,7 +35,7 @@ class GoogleAuthService {
       });
 
     } catch (e) {
-      print("LOGIN ERROR ----- GOOGLE ");
+      print("Firestore connection ERROR --- GOOGLE ");
     }
   }
 

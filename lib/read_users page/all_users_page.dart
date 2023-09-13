@@ -16,7 +16,6 @@ class _AllUsersPageState extends State<AllUsersPage> {
   // Flag to track whether data is being loaded
   bool isLoading = true;
 
-  //TODO - manage - Firestore READ: Get IDs and Fill the List
   Future<void> getDocIds() async {
     try {
       final snapshot = await FirebaseFirestore.instance

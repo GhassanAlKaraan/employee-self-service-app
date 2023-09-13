@@ -15,7 +15,7 @@ class ForgotPasswordPage extends StatefulWidget {
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   //Utility
   final utility = Utility();
-
+  bool canResendEmail = true;
   final formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
 
@@ -23,6 +23,29 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   void dispose() {
     emailController.dispose();
     super.dispose();
+  }
+
+  Future resetPassword() async {
+    utility.showLoading(context);
+    setState(() => canResendEmail = false);
+    await Future.delayed(const Duration(seconds: 30));
+    setState(() => canResendEmail = true);
+    try {
+      if(canResendEmail){
+        await FirebaseAuth.instance
+            .sendPasswordResetEmail(email: emailController.text.trim());
+
+        utility.showSnackBar(context, "Reset email sent");
+      }else{
+        utility.showSnackBar(context, "You need to wait before resending");
+      }
+
+      //Navigator.pop(context);
+    } on FirebaseAuthException catch (e) {
+      utility.showSnackBar(context, e.message.toString());
+    }
+
+    Navigator.pop(context);
   }
 
   @override
@@ -75,8 +98,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 // Button
                 const SizedBox(height: 50),
 
-                // TODO: Disable the button for a few seconds before the user can resend email.
-                MyButton(onTap: resetPassword, txt: "Send Request"),
+                MyButton(onTap: resetPassword, txt: canResendEmail? "Send Request" : "Sent!"),
               ],
             ),
           ),
@@ -85,20 +107,5 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     );
   }
 
-  void resetPassword() async {
-    utility.showLoading(context);
 
-    try {
-      await FirebaseAuth.instance
-          .sendPasswordResetEmail(email: emailController.text.trim());
-
-      utility.showSnackBar(context, "Reset email sent");
-
-      //Navigator.pop(context);
-    } on FirebaseAuthException catch (e) {
-      utility.showSnackBar(context, e.message.toString());
-    }
-
-    Navigator.pop(context);
-  }
 }

@@ -39,7 +39,7 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
 
-  //TODO: control registration abuse
+  //TODO: ABUSE CONTROL - register user cool down
   //Register User
   Future signUp() async {
     if (!isInfoNotEmpty() && !passwordsMatch()) {

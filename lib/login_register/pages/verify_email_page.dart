@@ -50,21 +50,21 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
     }
   }
 
-  Future updateFirestore() async{
+  Future updateFirestore() async {
     // Get current user email
-    final String userEmail = FirebaseAuth.instance.currentUser!.email.toString();
+    final String userEmail =
+        FirebaseAuth.instance.currentUser!.email.toString();
 
     //Update the document
     FirebaseFirestore.instance.collection("users").doc(userEmail).update({
       "verified email": true,
     });
-
   }
+
   Future sendVerificationEmail() async {
     try {
       final user = FirebaseAuth.instance.currentUser!;
       await user.sendEmailVerification();
-
 
       setState(() => canResendEmail = false);
       await Future.delayed(const Duration(seconds: 20));
@@ -73,42 +73,42 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
       utility.showSnackBar(context, e.toString());
     }
   }
+
   @override
   void dispose() {
     timer?.cancel();
     super.dispose();
   }
+
   void resendEmail() async {
     utility.showLoading(context);
 
-    try {
-      // Start
-      if(canResendEmail){
+    if (canResendEmail) {
+      try {
         sendVerificationEmail();
         utility.showSnackBar(context, "Verification resent, check your inbox");
-
+      } catch (e) {
+        utility.showSnackBar(context, e.toString());
       }
-      else{
-        utility.showSnackBar(context, "You need to wait before resending");
-      }
-
-      // End
-
-    }catch (e) {
-      utility.showSnackBar(context, e.toString());
+    } else {
+      utility.showSnackBar(context, "You need to wait before resending");
     }
+
+
     Navigator.pop(context);
   }
+
   void cancel() {
     utility.showAlertDialog(context, firebaseLogout, "Cancel");
   }
+
   void firebaseLogout() {
     FirebaseAuth.instance.signOut();
   }
 
   @override
   Widget build(BuildContext context) => isEmailVerified
-      ? HomePage()
+      ? const HomePage()
       : Scaffold(
           appBar: AppBar(
             title: const Text("Verify Your Email"),
@@ -129,7 +129,19 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
 
                     //Icon
                     const SizedBox(height: 20),
-                    const Row(mainAxisAlignment:MainAxisAlignment.center,children: [Icon(Icons.verified, size: 80,), SizedBox(width: 10,),Icon(Icons.mail, size: 80),],),
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.verified,
+                          size: 80,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Icon(Icons.mail, size: 80),
+                      ],
+                    ),
 
                     //Message
                     const SizedBox(height: 40),
@@ -148,18 +160,21 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
 
                     // Button
                     const SizedBox(height: 50),
-
-                    // TODO: Change the button color when it's disabled
-                    MyButton(onTap: canResendEmail? resendEmail : (){utility.showSnackBar(context, "Wait before resending email");}, txt: "Re-send Email"),
+                    MyButton(
+                        onTap: canResendEmail
+                            ? resendEmail
+                            : () {
+                                utility.showSnackBar(
+                                    context, "Wait before resending email");
+                              },
+                        txt: canResendEmail ? "Re-send Email" : "Sent!"),
 
                     const SizedBox(height: 20),
-                    MyButton2(onTap: ()=> cancel(), txt: "Cancel"),
+                    MyButton2(onTap: () => cancel(), txt: "Cancel"),
                   ],
                 ),
               ),
             ),
           ),
         );
-
-
 }
