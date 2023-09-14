@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:new_ess/read_leaves%20page/all_leaves_page.dart';
 
 import '../../read_users page/all_users_page.dart';
 import '../home utilities/utility.dart';
@@ -34,6 +35,15 @@ class MyDrawer extends StatelessWidget {
                     utility.goToPage(context, const AllUsersPage());
                   },
                 ),
+                ListTile(
+                  leading: const Icon(Icons.time_to_leave_outlined),
+                  title: const Text('Pending leaves', style: TextStyle(fontSize: 18)),
+                  onTap: () {
+                    // Handle the tap event for this Tile
+                    Navigator.pop(context);
+                    utility.goToPage(context, const AllLeavesPage());
+                  },
+                ),
                 Divider(
                   thickness: 1.0,
                   color: Colors.grey[500],
@@ -49,17 +59,10 @@ class MyDrawer extends StatelessWidget {
                   },
                 ),
                 ListTile(
-                  leading: const Icon(Icons.time_to_leave_outlined),
-                  title: const Text('Pending leaves', style: TextStyle(fontSize: 18)),
-                  onTap: () {
-                    // Handle the tap event for Chat
-                  },
-                ),
-                ListTile(
                   leading: const Icon(Icons.time_to_leave),
                   title: const Text('Approved leaves', style: TextStyle(fontSize: 18)),
                   onTap: () {
-                    // Handle the tap event for Chat
+                    // Handle the tap event for this Tile
                   },
                 ),
 
