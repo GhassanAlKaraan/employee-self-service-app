@@ -32,6 +32,7 @@ class GoogleAuthService {
       await FirebaseFirestore.instance.collection('users').doc(email).set({
         'name': name,
         'email': email,
+        'verified email': true, //because Google Authentication is always verified
       });
 
     } catch (e) {
