@@ -16,20 +16,31 @@ class MyButton2 extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 120,
         padding: const EdgeInsets.all(18),
         decoration: BoxDecoration(
-          color: Colors.grey[300],
-          border: Border.all(color: Colors.black, width: 2),
+          color: Colors.grey[200],
+          //border: Border.all(color: Colors.black, width: 1),
           borderRadius: BorderRadius.circular(12),
+          boxShadow: const [
+            BoxShadow(
+            color: Colors.grey,
+            offset: Offset(4.0, 4.0),
+          blurRadius: 5.0,
+          spreadRadius: 1),
+        BoxShadow(
+            color: Colors.white,
+            offset: Offset(-4.0, -4.0),
+            blurRadius: 5.0,
+            spreadRadius: 1),
+        ]
         ),
         child:  Center(
           child: Text(
             txt,
-            style: TextStyle(
-              color: Colors.red[900],
+            style: const TextStyle(
+              color: Colors.black,
               fontWeight: FontWeight.bold,
-              fontSize: 30,
+              fontSize: 20,
             ),
           ),
         ),

@@ -24,22 +24,34 @@ class InfoCard1 extends StatelessWidget {
               children: [
                 Text(
                   'Leave ID:',
-                  style: TextStyle(fontSize: 16),
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),
                 ),
                 Text(
                   'Employee:',
-                  style: TextStyle(fontSize: 16),
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),
                 ),
                 SizedBox(
                   height: 20,
                 ),
                 Text(
                   'Leave Type:',
-                  style: TextStyle(fontSize: 16),
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),
                 ),
                 Text(
                   'Reason:',
-                  style: TextStyle(fontSize: 16),
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),
                 ),
               ],
             ),

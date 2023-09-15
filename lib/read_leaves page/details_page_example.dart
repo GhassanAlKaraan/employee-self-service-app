@@ -20,7 +20,7 @@ class DetailsPageExample extends StatelessWidget {
           children: [
             Text(
               "Pending Approval",
-              style: TextStyle(fontSize: 20),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             SizedBox(
               width: 10,
@@ -50,15 +50,33 @@ class DetailsPageExample extends StatelessWidget {
           expired: false,
         ),
         const SizedBox(
-          height: 50,
+          height: 40,
         ),
 
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+        //TODO: implement buttons functions
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            MyButton2(onTap: () {}, txt: "Approve"),
-            SizedBox(width: 20,),
-            MyButton2(onTap: () {}, txt: "Reject"),
+            Row(
+              children: [
+                Expanded(child: MyButton2(onTap: () {}, txt: "Approve")),
+                const SizedBox(
+                  width: 25,
+                ),
+                Expanded(child: MyButton2(onTap: () {}, txt: "Reject")),
+              ],
+            ),
+            // Row(children: [
+            //   Expanded(
+            //       child: MyButton2(
+            //     onTap: () {},
+            //     txt: "Remind me Later",
+            //   ))
+            // ]),
+            SizedBox(height: 25,),
+
+            Row(children:[Expanded(child: MyButton2(onTap: (){}, txt: "Remind me Later",))]),
+
           ],
         )
       ],

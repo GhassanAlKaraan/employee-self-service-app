@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:new_ess/read_leaves%20page/components/info_card_1.dart';
 import 'package:new_ess/read_leaves%20page/details_page_example.dart';
 import 'package:new_ess/read_leaves%20page/read_leaves%20utilities/utility.dart';
 
@@ -58,7 +57,9 @@ class _LeaveDetailsPageState extends State<LeaveDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[300],
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
         title: const Text("Leave details:",
             style: TextStyle(
               fontSize: 24,
@@ -66,22 +67,24 @@ class _LeaveDetailsPageState extends State<LeaveDetailsPage> {
             )),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(25.0),
+        padding: const EdgeInsets.all(20.0),
         child: Expanded(
           child: isLoading
               ? const Center(child: CircularProgressIndicator())
               : Container(
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(color: Colors.grey[300]),
+                  padding: const EdgeInsets.all(15),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(18)),
                   child:
                       //TODO: insert custom card widget here - use wrap...
-                  //     Text(
-                  //   "Employee: ${myData?['employee first name']}",
-                  //   style: const TextStyle(
-                  //     fontSize: 18,
-                  //   ),
-                  // ),
-            DetailsPageExample(),
+                      //     Text(
+                      //   "Employee: ${myData?['employee first name']}",
+                      //   style: const TextStyle(
+                      //     fontSize: 18,
+                      //   ),
+                      // ),
+                      DetailsPageExample(),
                 ),
         ),
       ),

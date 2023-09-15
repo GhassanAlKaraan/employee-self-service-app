@@ -28,11 +28,17 @@ class InfoCard2 extends StatelessWidget {
                       children: [
                         Text(
                           'From:',
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16),
                         ),
                         Text(
                           'To:',
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16),
                         ),
                       ],
                     ),
@@ -52,8 +58,10 @@ class InfoCard2 extends StatelessWidget {
                     const SizedBox(
                       width: 5,
                     ),
-
-                    const VerticalDivider(width: 2, thickness: 2,),
+                    const VerticalDivider(
+                      width: 2,
+                      thickness: 2,
+                    ),
                     const SizedBox(
                       width: 5,
                     ),
@@ -62,7 +70,10 @@ class InfoCard2 extends StatelessWidget {
                       children: [
                         Text(
                           "Total Days",
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16),
                         ),
                         Text(
                           "5", // TODO: calculate the total days
@@ -76,7 +87,10 @@ class InfoCard2 extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              const Divider(height: 2, color: Colors.grey,),
+              const Divider(
+                height: 2,
+                color: Colors.grey,
+              ),
               const SizedBox(
                 height: 10,
               ),
@@ -88,11 +102,17 @@ class InfoCard2 extends StatelessWidget {
                     children: [
                       Text(
                         'Valid Balance:',
-                        style: TextStyle(fontSize: 16),
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16),
                       ),
                       Text(
                         'Expired:',
-                        style: TextStyle(fontSize: 16),
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16),
                       ),
                     ],
                   ),
