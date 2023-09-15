@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class InfoCard2 extends StatelessWidget {
-  InfoCard2(
+  const InfoCard2(
       {super.key,
       required this.fromDate,
       required this.toDate,
@@ -53,7 +53,7 @@ class InfoCard2 extends StatelessWidget {
                       width: 5,
                     ),
 
-                    VerticalDivider(width: 2, thickness: 2,),
+                    const VerticalDivider(width: 2, thickness: 2,),
                     const SizedBox(
                       width: 5,
                     ),
@@ -76,7 +76,7 @@ class InfoCard2 extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              Divider(height: 2, color: Colors.grey,),
+              const Divider(height: 2, color: Colors.grey,),
               const SizedBox(
                 height: 10,
               ),

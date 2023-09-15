@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:new_ess/login_register/components/my_button_2.dart';
 
 import 'components/info_card_1.dart';
 import 'components/info_card_2.dart';
@@ -10,8 +11,9 @@ class DetailsPageExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        // Status
         const SizedBox(
-          height: 30,
+          height: 20,
         ),
         const Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -29,6 +31,8 @@ class DetailsPageExample extends StatelessWidget {
         const SizedBox(
           height: 25,
         ),
+
+        // First card
         const InfoCard1(
             leaveId: "000001",
             employeeName: "Ghassan Al Karaan",
@@ -37,12 +41,25 @@ class DetailsPageExample extends StatelessWidget {
         const SizedBox(
           height: 20,
         ),
-        InfoCard2(
+
+        // Second card
+        const InfoCard2(
           fromDate: "20 sep 2023",
           toDate: "25 sep 2023",
           validBalance: true,
           expired: false,
         ),
+        const SizedBox(
+          height: 50,
+        ),
+
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            MyButton2(onTap: () {}, txt: "Approve"),
+            MyButton2(onTap: () {}, txt: "Reject"),
+          ],
+        )
       ],
     );
   }
