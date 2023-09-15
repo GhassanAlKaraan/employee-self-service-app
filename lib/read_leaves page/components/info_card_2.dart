@@ -58,14 +58,14 @@ class InfoCard2 extends StatelessWidget {
                       width: 5,
                     ),
                     const Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
                           "Total Days",
                           style: TextStyle(fontSize: 16),
                         ),
                         Text(
-                          "t0d0", // TODO: calculate the total days
+                          "5", // TODO: calculate the total days
                           style: TextStyle(fontSize: 16),
                         ),
                       ],
@@ -81,7 +81,7 @@ class InfoCard2 extends StatelessWidget {
                 height: 10,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

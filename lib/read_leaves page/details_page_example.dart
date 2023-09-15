@@ -10,11 +10,39 @@ class DetailsPageExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: 70,),
-        InfoCard1(leaveId: "000001", employeeName: "Ghassan Al Karaan", leaveType: "Annual", leaveReason: "Vacation"),
-        SizedBox(height: 20,),
-        InfoCard2(fromDate: "20 sep 2023", toDate: "25 sep 2023", validBalance: true, expired: false,),
-
+        const SizedBox(
+          height: 30,
+        ),
+        const Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Pending Approval",
+              style: TextStyle(fontSize: 20),
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Icon(Icons.circle)
+          ],
+        ),
+        const SizedBox(
+          height: 25,
+        ),
+        const InfoCard1(
+            leaveId: "000001",
+            employeeName: "Ghassan Al Karaan",
+            leaveType: "Annual",
+            leaveReason: "Vacation"),
+        const SizedBox(
+          height: 20,
+        ),
+        InfoCard2(
+          fromDate: "20 sep 2023",
+          toDate: "25 sep 2023",
+          validBalance: true,
+          expired: false,
+        ),
       ],
     );
   }
