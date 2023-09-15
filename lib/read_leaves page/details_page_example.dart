@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:new_ess/login_register/components/my_button_2.dart';
+import 'package:new_ess/read_leaves page/components/my_button_2.dart';
 
 import 'components/info_card_1.dart';
 import 'components/info_card_2.dart';
@@ -54,9 +54,10 @@ class DetailsPageExample extends StatelessWidget {
         ),
 
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             MyButton2(onTap: () {}, txt: "Approve"),
+            SizedBox(width: 20,),
             MyButton2(onTap: () {}, txt: "Reject"),
           ],
         )
