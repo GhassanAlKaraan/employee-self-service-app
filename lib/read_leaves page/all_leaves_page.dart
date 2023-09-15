@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:new_ess/read_leaves%20page/read_leaves%20utilities/utility.dart';
 import 'leave_details_page.dart';
-import 'read data/get_leave_header.dart';
+import 'components/read data/get_leave_header.dart';
 
 class AllLeavesPage extends StatefulWidget {
   const AllLeavesPage({super.key});
@@ -34,7 +34,7 @@ class _AllLeavesPageState extends State<AllLeavesPage> {
       });
     } catch (e) {
       // Handle errors here if needed
-      print('Error fetching data: $e');
+      utility.showSnackBar(context, "Couldn't load leaves");
     } finally {
       setState(() {
         isLoading = false; // Data loading is complete

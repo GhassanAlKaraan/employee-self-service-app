@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:new_ess/read_leaves%20page/components/info_card_1.dart';
+import 'package:new_ess/read_leaves%20page/details_page_example.dart';
+import 'package:new_ess/read_leaves%20page/read_leaves%20utilities/utility.dart';
 
 class LeaveDetailsPage extends StatefulWidget {
   LeaveDetailsPage({super.key, required this.documentId});
@@ -14,6 +17,8 @@ class _LeaveDetailsPageState extends State<LeaveDetailsPage> {
   // Flag to track whether data is being loaded
   bool isLoading = true;
 
+  final utility = Utility();
+
   Map<String, dynamic>? myData; // Declare a variable to store the data
 
   Future<Map<String, dynamic>?> getData(String documentId) async {
@@ -24,16 +29,17 @@ class _LeaveDetailsPageState extends State<LeaveDetailsPage> {
           .get();
 
       if (documentSnapshot.exists) {
-        Map<String, dynamic> data = documentSnapshot.data() as Map<String, dynamic>;
-        // Access the values from the document here.
-        //print(data['fieldName']);
+        Map<String, dynamic> data =
+            documentSnapshot.data() as Map<String, dynamic>;
 
         return data;
       } else {
-        print('Document does not exist');
+        utility.showSnackBar(context, "No Details for this leave!");
+        return null;
       }
     } catch (e) {
-      print('Error getting document: $e');
+      utility.showSnackBar(context, e.toString());
+      return null;
     }
   }
 
@@ -65,13 +71,18 @@ class _LeaveDetailsPageState extends State<LeaveDetailsPage> {
           child: isLoading
               ? const Center(child: CircularProgressIndicator())
               : Container(
-                padding: const EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(color: Colors.grey[300]),
-                  child: Text(
-                    "Employee: ${myData?['employee first name']}",style: const TextStyle(
-                    fontSize: 18,
-                  ),
-                  ),),
+                  child:
+                      //TODO: insert custom card widget here - use wrap...
+                  //     Text(
+                  //   "Employee: ${myData?['employee first name']}",
+                  //   style: const TextStyle(
+                  //     fontSize: 18,
+                  //   ),
+                  // ),
+            DetailsPageExample(),
+                ),
         ),
       ),
     );
