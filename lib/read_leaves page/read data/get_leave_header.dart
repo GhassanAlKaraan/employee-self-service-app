@@ -14,10 +14,10 @@ class GetLeaveId extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //Get the collection
-    CollectionReference users = FirebaseFirestore.instance.collection("leave header");
+    CollectionReference leaves = FirebaseFirestore.instance.collection("leave header");
 
     return FutureBuilder<DocumentSnapshot>(
-        future: users.doc(documentId).get(),
+        future: leaves.doc(documentId).get(),
         builder: ((context, snapshot) {
           //Check if the connection is established
           if (snapshot.connectionState == ConnectionState.done) {

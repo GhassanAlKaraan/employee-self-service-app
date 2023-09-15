@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:new_ess/read_leaves%20page/read_leaves%20utilities/utility.dart';
+import 'leave_details_page.dart';
 import 'read data/get_leave_header.dart';
 
 class AllLeavesPage extends StatefulWidget {
@@ -15,6 +17,9 @@ class _AllLeavesPageState extends State<AllLeavesPage> {
 
   // Flag to track whether data is being loaded
   bool isLoading = true;
+
+  //Utilities
+  final utility = Utility();
 
   Future<void> getDocIds() async {
     try {
@@ -66,11 +71,14 @@ class _AllLeavesPageState extends State<AllLeavesPage> {
                       itemCount: docIDs.length,
                       itemBuilder: (context, index) {
                         return Padding(
-                          padding: const EdgeInsets.all(6.0),
-                          child: Container(
-                            padding: const EdgeInsets.all(10),
-                              decoration: BoxDecoration(color: Colors.grey[300]),
-                              child: GetLeaveId(documentId: docIDs[index])),
+                          padding: const EdgeInsets.symmetric(vertical: 10.0),
+                          child: GestureDetector(
+                            onTap: () => utility.goToPage(context, LeaveDetailsPage(documentId: docIDs[index],)),
+                            child: Container(
+                              padding: const EdgeInsets.all(10),
+                                decoration: BoxDecoration(color: Colors.grey[300]),
+                                child: GetLeaveId(documentId: docIDs[index])),
+                          ),
                         );
                       }),
             )
