@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:new_ess/read_leaves%20page/details_page_example.dart';
+import 'package:new_ess/read_leaves%20page/details_card.dart';
 import 'package:new_ess/read_leaves%20page/read_leaves%20utilities/utility.dart';
 
 class LeaveDetailsPage extends StatefulWidget {
@@ -84,7 +84,7 @@ class _LeaveDetailsPageState extends State<LeaveDetailsPage> {
                       //     fontSize: 18,
                       //   ),
                       // ),
-                      DetailsPageExample(),
+                      DetailsCard(),
                 ),
         ),
       ),

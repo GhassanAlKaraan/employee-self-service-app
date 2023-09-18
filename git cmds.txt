@@ -1,12 +1,19 @@
-Push new repo to github:
+## Push new repo to github:
 
-git init -b main
-git remote add origin /path/to/origin.git
-git add .
-git commit -m "initial commit"
-git push origin main
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/GhassanAlKaraan/   .git
+git push -u origin main
 
-Change branch:
+## Push an existing repo to github:
+
+git remote add origin https://github.com/GhassanAlKaraan/   .git
+git branch -M main
+git push -u origin main
+
+## Change branch:
 
 git branch -m master main
 git fetch origin

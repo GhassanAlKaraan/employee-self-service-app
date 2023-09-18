@@ -18,7 +18,7 @@ class MyButton2 extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(18),
         decoration: BoxDecoration(
-          color: Colors.grey[200],
+          color: Colors.grey[300],
           //border: Border.all(color: Colors.black, width: 1),
           borderRadius: BorderRadius.circular(12),
           boxShadow: const [
@@ -30,7 +30,7 @@ class MyButton2 extends StatelessWidget {
         BoxShadow(
             color: Colors.white,
             offset: Offset(-4.0, -4.0),
-            blurRadius: 5.0,
+            blurRadius: 4.0,
             spreadRadius: 1),
         ]
         ),

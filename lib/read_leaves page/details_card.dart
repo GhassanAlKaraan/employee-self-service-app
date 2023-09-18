@@ -4,8 +4,10 @@ import 'package:new_ess/read_leaves page/components/my_button_2.dart';
 import 'components/info_card_1.dart';
 import 'components/info_card_2.dart';
 
-class DetailsPageExample extends StatelessWidget {
-  const DetailsPageExample({super.key});
+class DetailsCard extends StatelessWidget {
+  const DetailsCard({super.key});
+
+  // TODO: require the document ID, and implement firestore Read function to fetch data
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class DetailsPageExample extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Pending Approval",
+              "Pending Approval", // TODO: change
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             SizedBox(
@@ -34,20 +36,20 @@ class DetailsPageExample extends StatelessWidget {
 
         // First card
         const InfoCard1(
-            leaveId: "000001",
-            employeeName: "Ghassan Al Karaan",
-            leaveType: "Annual",
-            leaveReason: "Vacation"),
+            leaveId: "000001", // TODO: change
+            employeeName: "Ghassan Al Karaan", // TODO: change
+            leaveType: "Annual", // TODO: change
+            leaveReason: "Vacation"), // TODO: change
         const SizedBox(
           height: 20,
         ),
 
         // Second card
         const InfoCard2(
-          fromDate: "20 sep 2023",
-          toDate: "25 sep 2023",
-          validBalance: true,
-          expired: false,
+          fromDate: "20 sep 2023", // TODO: change
+          toDate: "25 sep 2023", // TODO: change
+          validBalance: true, // TODO: change
+          expired: false, // TODO: change
         ),
         const SizedBox(
           height: 40,
@@ -60,23 +62,22 @@ class DetailsPageExample extends StatelessWidget {
             Row(
               children: [
                 Expanded(child: MyButton2(onTap: () {}, txt: "Approve")),
+                // TODO: change
                 const SizedBox(
                   width: 25,
                 ),
                 Expanded(child: MyButton2(onTap: () {}, txt: "Reject")),
+                // TODO: change
               ],
             ),
-            // Row(children: [
-            //   Expanded(
-            //       child: MyButton2(
-            //     onTap: () {},
-            //     txt: "Remind me Later",
-            //   ))
-            // ]),
-            SizedBox(height: 25,),
-
-            Row(children:[Expanded(child: MyButton2(onTap: (){}, txt: "Remind me Later",))]),
-
+            const SizedBox(height: 25),
+            Row(children: [
+              Expanded(
+                  child: MyButton2(
+                onTap: () {},
+                txt: "Remind me Later",
+              ))
+            ]),
           ],
         )
       ],
