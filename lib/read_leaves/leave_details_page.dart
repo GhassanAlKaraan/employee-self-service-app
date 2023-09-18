@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
-import 'package:new_ess/read_leaves%20page/components/read%20data/details_card.dart';
-import 'package:new_ess/read_leaves%20page/read_leaves%20utilities/utility.dart';
+import 'package:new_ess/read_leaves/components/read%20data/details_card.dart';
+import 'package:new_ess/read_leaves/read_leaves%20utilities/utility.dart';
 
 import 'components/my_button_2.dart';
 
@@ -79,7 +79,7 @@ class _LeaveDetailsPageState extends State<LeaveDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: isApproved? Colors.green: Colors.redAccent,
+      backgroundColor: isApproved ? Colors.green : Colors.redAccent,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: const Text("Leave details:",
@@ -137,7 +137,7 @@ class _LeaveDetailsPageState extends State<LeaveDetailsPage> {
                           Row(children: [
                             Expanded(
                                 child: MyButton2(
-                              onTap: () {},
+                              onTap: () {}, // TODO: change onTap
                               txt: "Remind me Later",
                             ))
                           ]),
