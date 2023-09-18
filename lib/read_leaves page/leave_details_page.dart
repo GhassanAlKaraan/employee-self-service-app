@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:new_ess/read_leaves%20page/details_card.dart';
+import 'package:intl/intl.dart';
+import 'package:new_ess/read_leaves%20page/components/read%20data/details_card.dart';
 import 'package:new_ess/read_leaves%20page/read_leaves%20utilities/utility.dart';
 
-class LeaveDetailsPage extends StatefulWidget {
-  LeaveDetailsPage({super.key, required this.documentId});
+import 'components/my_button_2.dart';
 
-  final documentId;
+class LeaveDetailsPage extends StatefulWidget {
+  const LeaveDetailsPage({super.key, required this.documentId});
+
+  final String documentId; // Same as leave id
 
   @override
   State<LeaveDetailsPage> createState() => _LeaveDetailsPageState();
@@ -40,6 +43,23 @@ class _LeaveDetailsPageState extends State<LeaveDetailsPage> {
       utility.showSnackBar(context, e.toString());
       return null;
     }
+  }
+
+  String convertFromDate(Map<String, dynamic> myData){
+    Timestamp fromDateTimestamp = myData['from date'];
+    DateTime fromDateDateTime = fromDateTimestamp.toDate();
+    String formattedFromDate = DateFormat('yyyy-MM-dd')
+        .format(fromDateDateTime);
+
+    return formattedFromDate;
+  }
+  String convertToDate(Map<String, dynamic> myData){
+    Timestamp toDateTimestamp = myData['to date'];
+    DateTime toDateDateTime = toDateTimestamp.toDate();
+    String formattedToDate = DateFormat('yyyy-MM-dd')
+        .format(toDateDateTime);
+
+    return formattedToDate;
   }
 
   @override
@@ -77,14 +97,51 @@ class _LeaveDetailsPageState extends State<LeaveDetailsPage> {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(18)),
                   child:
-                      //TODO: insert custom card widget here - use wrap...
-                      //     Text(
-                      //   "Employee: ${myData?['employee first name']}",
-                      //   style: const TextStyle(
-                      //     fontSize: 18,
-                      //   ),
-                      // ),
-                      DetailsCard(),
+                      Column(
+                        children: [
+                          DetailsCard(
+                            toDate: convertToDate(myData!),
+                            leaveId: widget.documentId,
+                            empFirstName: myData?['employee first name'],
+                            isExpired: myData?['expired'],
+                            validBalance: myData?['valid balance'],
+                            fromDate: convertFromDate(myData!),
+                            leaveReason: myData?['reason'],
+                            isApproved: myData?['approved'],
+                            leaveType: myData?['type'],
+                          ),
+
+                          const SizedBox(
+                            height: 40,
+                          ),
+
+                          //TODO: implement buttons functions
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Row(
+                                children: [
+                                  Expanded(child: MyButton2(onTap: () {}, txt: "Approve")),
+                                  // TODO: change onTap
+                                  const SizedBox(
+                                    width: 25,
+                                  ),
+                                  Expanded(child: MyButton2(onTap: () {}, txt: "Reject")),
+                                  // TODO: change onTap
+                                ],
+                              ),
+                              const SizedBox(height: 25),
+                              Row(children: [
+                                Expanded(
+                                    child: MyButton2(
+                                      onTap: () {},
+                                      txt: "Remind me Later",
+                                    ))
+                              ]),
+                            ],
+                          )
+                        ],
+                      ),
                 ),
         ),
       ),
