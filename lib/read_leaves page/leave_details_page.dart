@@ -18,6 +18,7 @@ class LeaveDetailsPage extends StatefulWidget {
 class _LeaveDetailsPageState extends State<LeaveDetailsPage> {
   // Flag to track whether data is being loaded
   bool isLoading = true;
+  bool isApproved = false;
 
   final utility = Utility();
 
@@ -45,19 +46,19 @@ class _LeaveDetailsPageState extends State<LeaveDetailsPage> {
     }
   }
 
-  String convertFromDate(Map<String, dynamic> myData){
+  String convertFromDate(Map<String, dynamic> myData) {
     Timestamp fromDateTimestamp = myData['from date'];
     DateTime fromDateDateTime = fromDateTimestamp.toDate();
-    String formattedFromDate = DateFormat('yyyy-MM-dd')
-        .format(fromDateDateTime);
+    String formattedFromDate =
+        DateFormat('yyyy-MM-dd').format(fromDateDateTime);
 
     return formattedFromDate;
   }
-  String convertToDate(Map<String, dynamic> myData){
+
+  String convertToDate(Map<String, dynamic> myData) {
     Timestamp toDateTimestamp = myData['to date'];
     DateTime toDateDateTime = toDateTimestamp.toDate();
-    String formattedToDate = DateFormat('yyyy-MM-dd')
-        .format(toDateDateTime);
+    String formattedToDate = DateFormat('yyyy-MM-dd').format(toDateDateTime);
 
     return formattedToDate;
   }
@@ -70,6 +71,7 @@ class _LeaveDetailsPageState extends State<LeaveDetailsPage> {
       setState(() {
         myData = data; // Update myData with the fetched data
         isLoading = false; // Set isLoading to false
+        isApproved = myData!['approved'];
       });
     });
   }
@@ -77,7 +79,7 @@ class _LeaveDetailsPageState extends State<LeaveDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: isApproved? Colors.green: Colors.redAccent,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: const Text("Leave details:",
@@ -96,52 +98,53 @@ class _LeaveDetailsPageState extends State<LeaveDetailsPage> {
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(18)),
-                  child:
-                      Column(
-                        children: [
-                          DetailsCard(
-                            toDate: convertToDate(myData!),
-                            leaveId: widget.documentId,
-                            empFirstName: myData?['employee first name'],
-                            isExpired: myData?['expired'],
-                            validBalance: myData?['valid balance'],
-                            fromDate: convertFromDate(myData!),
-                            leaveReason: myData?['reason'],
-                            isApproved: myData?['approved'],
-                            leaveType: myData?['type'],
-                          ),
-
-                          const SizedBox(
-                            height: 40,
-                          ),
-
-                          //TODO: implement buttons functions
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              Row(
-                                children: [
-                                  Expanded(child: MyButton2(onTap: () {}, txt: "Approve")),
-                                  // TODO: change onTap
-                                  const SizedBox(
-                                    width: 25,
-                                  ),
-                                  Expanded(child: MyButton2(onTap: () {}, txt: "Reject")),
-                                  // TODO: change onTap
-                                ],
-                              ),
-                              const SizedBox(height: 25),
-                              Row(children: [
-                                Expanded(
-                                    child: MyButton2(
-                                      onTap: () {},
-                                      txt: "Remind me Later",
-                                    ))
-                              ]),
-                            ],
-                          )
-                        ],
+                  child: Column(
+                    children: [
+                      DetailsCard(
+                        toDate: convertToDate(myData!),
+                        leaveId: widget.documentId,
+                        empFirstName: myData!['employee first name'],
+                        isExpired: myData!['expired'],
+                        validBalance: myData!['valid balance'],
+                        fromDate: convertFromDate(myData!),
+                        leaveReason: myData!['reason'],
+                        isApproved: myData!['approved'],
+                        leaveType: myData!['type'],
                       ),
+
+                      const SizedBox(height: 40),
+
+                      // TODO: implement buttons functions
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Row(
+                            children: [
+                              Expanded(
+                                  child:
+                                      MyButton2(onTap: () {}, txt: "Approve")),
+                              // TODO: change onTap
+                              const SizedBox(
+                                width: 25,
+                              ),
+                              Expanded(
+                                  child:
+                                      MyButton2(onTap: () {}, txt: "Reject")),
+                              // TODO: change onTap
+                            ],
+                          ),
+                          const SizedBox(height: 25),
+                          Row(children: [
+                            Expanded(
+                                child: MyButton2(
+                              onTap: () {},
+                              txt: "Remind me Later",
+                            ))
+                          ]),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
         ),
       ),

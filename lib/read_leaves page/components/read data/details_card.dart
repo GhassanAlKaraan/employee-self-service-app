@@ -30,22 +30,17 @@ class DetailsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // Status
-        const SizedBox(
-          height: 20,
-        ),
+        const SizedBox(height: 15),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              isApproved ? "Pending Approval ❌" : "Approved ✔",
+              isApproved ? "Approved ✔" : "Pending Approval ❌",
               style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ],
         ),
-        const SizedBox(
-          height: 25
-        ),
+        const SizedBox(height: 25),
 
         // First card
         InfoCard1(
