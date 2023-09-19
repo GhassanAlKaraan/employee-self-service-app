@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:new_ess/read_leaves/pages/leave_headers_page.dart';
-import '../login_register/components/my_button.dart';
 import '../read_users page/all_users_page.dart';
 import 'components/my_drawer.dart';
 import 'utils/home_utils.dart';
@@ -54,27 +53,32 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       drawer: MyDrawer(),
-      body: Center(
-        //TODO: make a nice dashboard
+      body:
+      Padding(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const SizedBox(
-              height: 20,
+            Card(
+              child: ListTile(
+                leading: const Icon(Icons.star),
+                title: const Text('See all users'),
+                subtitle: const Text('Fetch a list of all admins'),
+                onTap: () {
+                  utility.goToPage(context, const AllUsersPage());
+                },
+              ),
             ),
-            MyButton(
-              onTap: () {
-                utility.goToPage(context, const AllUsersPage());
-              },
-              txt: "Fetch Users",
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            MyButton(
-              onTap: () {
-                utility.goToPage(context, const LeaveHeadersPage());
-              },
-              txt: "Fetch Leaves",
+            Card(
+              child: ListTile(
+                leading: const Icon(Icons.dashboard),
+                title: const Text('See all leaves requests'),
+                subtitle: const Text('Pending and Accepted leave requests'),
+                onTap: () {
+                  utility.goToPage(context, const LeaveHeadersPage());
+                },
+              ),
             ),
           ],
         ),

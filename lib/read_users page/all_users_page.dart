@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'read data/get_user_name.dart';
+import 'package:new_ess/read_users%20page/read%20data/user_card.dart';
 
 class AllUsersPage extends StatefulWidget {
   const AllUsersPage({super.key});
@@ -57,6 +57,13 @@ class _AllUsersPageState extends State<AllUsersPage> {
         padding: const EdgeInsets.all(25.0),
         child: Column(
           children: [
+            const Icon(
+              Icons.admin_panel_settings,
+              size: 80,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
             Expanded(
               // Build a listview from a future method.
               // Show loading indicator if data is still loading
@@ -67,9 +74,7 @@ class _AllUsersPageState extends State<AllUsersPage> {
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: const EdgeInsets.all(6.0),
-                          child: ListTile(
-                              tileColor: Colors.grey[300],
-                              title: GetUserName(documentId: docIDs[index])),
+                          child: UserCard(documentId: docIDs[index]),
                         );
                       }),
             )
