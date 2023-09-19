@@ -16,7 +16,7 @@ class DetailsButtons extends StatelessWidget {
   final bool isApproved;
   final Utility utility = Utility();
 
-  Future setApprove(String documentId, bool approval) async {
+  Future updateFirestoreApproved(String documentId, bool approval) async {
     final Map<String, dynamic> dataToUpdate = {
       'approved': approval,
     };
@@ -37,7 +37,9 @@ class DetailsButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color? textColor = isApproved ? Colors.grey[500] : Colors.black;
+    final Color? approvedColor = isApproved ? Colors.grey[500] : Colors.black;
+    final Color? disapprovedColor =
+        isApproved ? Colors.black : Colors.grey[500];
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -52,17 +54,16 @@ class DetailsButtons extends StatelessWidget {
                     } else {
                       utility.showAlertDialog(context, () {
                         Navigator.of(context).pop();
-                        setApprove(documentId, true);
+                        updateFirestoreApproved(documentId, true);
                         utility.showSnackBar(context, "Done");
                       }, "Approve Leave");
-
                     }
                   } catch (e) {
                     print(e.toString());
                   }
                 },
                 txt: "Approve",
-                color: textColor,
+                color: approvedColor,
               ),
             ),
             const SizedBox(
@@ -70,26 +71,23 @@ class DetailsButtons extends StatelessWidget {
             ),
             Expanded(
               child: MyButton3(
-                  onTap: () {
-                    try {
-                      if (!isApproved) {
-                        utility.showSnackBar(context, "Leave is not Approved");
-                      } else {
-                        utility.showAlertDialog(context, () {
-                          Navigator.of(context).pop();
-                          setApprove(documentId, false);
-                          utility.showSnackBar(context, "Done");
-                        }, "Reject Leave");
-
-
-                      }
-                    } catch (e) {
-                      print(e.toString());
+                onTap: () {
+                  try {
+                    if (!isApproved) {
+                      utility.showSnackBar(context, "Leave is not Approved");
+                    } else {
+                      utility.showAlertDialog(context, () {
+                        Navigator.of(context).pop();
+                        updateFirestoreApproved(documentId, false);
+                        utility.showSnackBar(context, "Done");
+                      }, "Disapprove Leave");
                     }
-                  },
-                  txt: "Reject",
-                  //color: textColor,
-                  color: Colors.black,
+                  } catch (e) {
+                    print(e.toString());
+                  }
+                },
+                txt: "Disapprove",
+                color: disapprovedColor,
               ),
             ),
           ],
@@ -101,11 +99,11 @@ class DetailsButtons extends StatelessWidget {
             onTap: () {
               isApproved
                   ? utility.showSnackBar(context, "Leave Already Approved")
-                  : utility.showSnackBar(context, "Done");
+                  : utility.showSnackBar(context, "Feature Coming Soon");
               // TODO: Remind Later here
             },
             txt: "Remind me Later 🕑",
-            color: textColor,
+            color: approvedColor,
           ))
         ]),
       ],
