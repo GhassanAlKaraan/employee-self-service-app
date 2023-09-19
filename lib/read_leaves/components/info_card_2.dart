@@ -77,7 +77,7 @@ class InfoCard2 extends StatelessWidget {
                               fontSize: 16),
                         ),
                         Text(
-                          totalDays.toString(),
+                          totalDays.toStringAsFixed(1),
                           style: const TextStyle(fontSize: 16),
                         ),
                       ],

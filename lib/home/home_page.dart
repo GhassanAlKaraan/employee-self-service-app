@@ -16,7 +16,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   //utility
-  final homeUtility = Utility();
+  final utility = Utility();
 
   //Get info about the user
   final user = FirebaseAuth.instance.currentUser!;
@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
     }
 
     void signOut() {
-      homeUtility.showAlertDialog(context, firebaseLogout, "Logout");
+      utility.showAlertDialog(context, firebaseLogout, "Logout");
     }
 
     return Scaffold(
@@ -55,6 +55,7 @@ class _HomePageState extends State<HomePage> {
       ),
       drawer: MyDrawer(),
       body: Center(
+        //TODO: make a nice dashboard
         child: Column(
           children: [
             const SizedBox(
@@ -62,7 +63,7 @@ class _HomePageState extends State<HomePage> {
             ),
             MyButton(
               onTap: () {
-                homeUtility.goToPage(context, const AllUsersPage());
+                utility.goToPage(context, const AllUsersPage());
               },
               txt: "Fetch Users",
             ),
@@ -71,7 +72,7 @@ class _HomePageState extends State<HomePage> {
             ),
             MyButton(
               onTap: () {
-                homeUtility.goToPage(context, const LeaveHeadersPage());
+                utility.goToPage(context, const LeaveHeadersPage());
               },
               txt: "Fetch Leaves",
             ),
