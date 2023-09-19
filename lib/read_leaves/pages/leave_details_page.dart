@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
 import 'package:new_ess/read_leaves/components/read%20data/details_card.dart';
-import 'package:new_ess/read_leaves/read_leaves%20utilities/utility.dart';
-
-import 'components/my_button_2.dart';
+import '../components/write data/details_buttons.dart';
+import '../utils/leaves_utils.dart';
 
 class LeaveDetailsPage extends StatefulWidget {
   const LeaveDetailsPage({super.key, required this.documentId});
@@ -63,6 +62,20 @@ class _LeaveDetailsPageState extends State<LeaveDetailsPage> {
     return formattedToDate;
   }
 
+  double calculateTotalDays(Map<String, dynamic> myData){
+    Timestamp toDateTimestamp = myData['to date'];
+    DateTime toDateDateTime = toDateTimestamp.toDate();
+
+    Timestamp fromDateTimestamp = myData['from date'];
+    DateTime fromDateDateTime = fromDateTimestamp.toDate();
+
+    Duration difference = toDateDateTime.difference(fromDateDateTime);
+
+    double differenceInDays = difference.inSeconds / 86400.0;
+
+    return differenceInDays;
+  }
+
   @override
   void initState() {
     super.initState();
@@ -79,7 +92,7 @@ class _LeaveDetailsPageState extends State<LeaveDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: isApproved ? Colors.green : Colors.redAccent,
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: const Text("Leave details:",
@@ -110,39 +123,13 @@ class _LeaveDetailsPageState extends State<LeaveDetailsPage> {
                         leaveReason: myData!['reason'],
                         isApproved: myData!['approved'],
                         leaveType: myData!['type'],
+                        totalDays: calculateTotalDays(myData!),
                       ),
 
                       const SizedBox(height: 40),
 
                       // TODO: implement buttons functions
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Row(
-                            children: [
-                              Expanded(
-                                  child:
-                                      MyButton2(onTap: () {}, txt: "Approve")),
-                              // TODO: change onTap
-                              const SizedBox(
-                                width: 25,
-                              ),
-                              Expanded(
-                                  child:
-                                      MyButton2(onTap: () {}, txt: "Reject")),
-                              // TODO: change onTap
-                            ],
-                          ),
-                          const SizedBox(height: 25),
-                          Row(children: [
-                            Expanded(
-                                child: MyButton2(
-                              onTap: () {}, // TODO: change onTap
-                              txt: "Remind me Later",
-                            ))
-                          ]),
-                        ],
-                      )
+                      DetailsButtons(isApproved: isApproved)
                     ],
                   ),
                 ),

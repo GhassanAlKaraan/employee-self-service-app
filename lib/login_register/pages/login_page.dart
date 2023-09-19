@@ -6,7 +6,7 @@ import '../components/continue_with_google.dart';
 import '../components/my_button.dart';
 import '../components/my_textfield.dart';
 import '../components/register_now_member.dart';
-import '../login_register utilities/utility.dart';
+import '../utils/auth_utils.dart';
 import 'forgot_password_page.dart';
 
 class LoginPage extends StatefulWidget {

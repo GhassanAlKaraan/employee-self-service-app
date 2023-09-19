@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:new_ess/read_leaves/all_leaves_page.dart';
+import 'package:new_ess/read_leaves/pages/all_leaves_page.dart';
 
 import '../../read_users page/all_users_page.dart';
-import '../home utilities/utility.dart';
+import '../utils/home_utils.dart';
 
 class MyDrawer extends StatelessWidget {
   MyDrawer({super.key});
@@ -36,8 +36,8 @@ class MyDrawer extends StatelessWidget {
                   },
                 ),
                 ListTile(
-                  leading: const Icon(Icons.time_to_leave_outlined),
-                  title: const Text('Pending leaves', style: TextStyle(fontSize: 18)),
+                  leading: const Icon(Icons.time_to_leave),
+                  title: const Text('Show All leaves', style: TextStyle(fontSize: 18)),
                   onTap: () {
                     // Handle the tap event for this Tile
                     Navigator.pop(context);
@@ -59,8 +59,8 @@ class MyDrawer extends StatelessWidget {
                   },
                 ),
                 ListTile(
-                  leading: const Icon(Icons.time_to_leave),
-                  title: const Text('Approved leaves', style: TextStyle(fontSize: 18)),
+                  leading: const Icon(Icons.time_to_leave_outlined),
+                  title: const Text('Pending leaves', style: TextStyle(fontSize: 18)),
                   onTap: () {
                     // Handle the tap event for this Tile
                   },

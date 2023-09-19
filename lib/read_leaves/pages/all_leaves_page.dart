@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:new_ess/read_leaves/read_leaves%20utilities/utility.dart';
-import 'leave_details_page.dart';
-import 'components/read data/get_leave_header.dart';
+import '../utils/leaves_utils.dart';
+import '../pages/leave_details_page.dart';
+import '../components/read data/get_leave_header.dart';
 
 class AllLeavesPage extends StatefulWidget {
   const AllLeavesPage({super.key});

@@ -14,7 +14,8 @@ class DetailsCard extends StatelessWidget {
       required this.isApproved,
       required this.leaveType,
       required this.toDate,
-      required this.fromDate});
+      required this.fromDate,
+      required this.totalDays});
 
   final String leaveId; // Same as document id
   final String empFirstName;
@@ -25,6 +26,7 @@ class DetailsCard extends StatelessWidget {
   final String leaveType;
   final String toDate;
   final String fromDate;
+  final double totalDays;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +37,9 @@ class DetailsCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              isApproved ? "Approved ✔" : "Pending Approval ❌",
+              isExpired
+                  ? ("Leave Expired ⛔")
+                  : (isApproved ? "Approved ✅" : "Not Approved ⭕"),
               style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ],
@@ -55,7 +59,7 @@ class DetailsCard extends StatelessWidget {
           toDate: toDate,
           validBalance: validBalance,
           expired: isExpired,
-          // TODO: Total days is missing
+          totalDays: totalDays,
         ),
       ],
     );

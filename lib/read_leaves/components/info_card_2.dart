@@ -6,10 +6,11 @@ class InfoCard2 extends StatelessWidget {
       required this.fromDate,
       required this.toDate,
       required this.validBalance,
-      required this.expired});
+      required this.expired, required this.totalDays});
 
   final String fromDate, toDate; // TODO: change type to date
   final bool validBalance, expired;
+  final double totalDays;
 
   @override
   Widget build(BuildContext context) {
@@ -65,10 +66,10 @@ class InfoCard2 extends StatelessWidget {
                     const SizedBox(
                       width: 5,
                     ),
-                    const Column(
+                    Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                           "Total Days",
                           style: TextStyle(
                               color: Colors.black,
@@ -76,8 +77,8 @@ class InfoCard2 extends StatelessWidget {
                               fontSize: 16),
                         ),
                         Text(
-                          "5", // TODO: calculate the total days
-                          style: TextStyle(fontSize: 16),
+                          totalDays.toString(),
+                          style: const TextStyle(fontSize: 16),
                         ),
                       ],
                     )

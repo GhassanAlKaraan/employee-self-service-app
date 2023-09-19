@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:new_ess/home/home_page.dart';
 import '../components/my_button.dart';
 import '../components/my_button_2.dart';
-import '../login_register utilities/utility.dart';
+import '../utils/auth_utils.dart';
 
 class VerifyEmailPage extends StatefulWidget {
   const VerifyEmailPage({super.key});

@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:new_ess/read_leaves/all_leaves_page.dart';
+import 'package:new_ess/read_leaves/pages/all_leaves_page.dart';
 import '../login_register/components/my_button.dart';
 import '../read_users page/all_users_page.dart';
 import 'components/my_drawer.dart';
-import 'home utilities/utility.dart';
+import 'utils/home_utils.dart';
 
 class HomePage extends StatefulWidget {
 
