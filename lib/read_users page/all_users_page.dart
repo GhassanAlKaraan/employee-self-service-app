@@ -57,9 +57,10 @@ class _AllUsersPageState extends State<AllUsersPage> {
         padding: const EdgeInsets.all(25.0),
         child: Column(
           children: [
-            const Icon(
+            Icon(
               Icons.admin_panel_settings,
               size: 80,
+              color: Colors.red[900],
             ),
             const SizedBox(
               height: 20,

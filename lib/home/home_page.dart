@@ -58,8 +58,12 @@ class _HomePageState extends State<HomePage> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            const Icon(Icons.dashboard_customize, size: 120,),
+            const SizedBox(height: 10,),
+            const Text("Dashboard (Coming Soon)", style: TextStyle(fontSize: 20),),
+            const SizedBox(height: 20,),
             Card(
               child: ListTile(
                 leading: const Icon(Icons.star),
@@ -72,7 +76,7 @@ class _HomePageState extends State<HomePage> {
             ),
             Card(
               child: ListTile(
-                leading: const Icon(Icons.dashboard),
+                leading: const Icon(Icons.time_to_leave_sharp),
                 title: const Text('See all leaves requests'),
                 subtitle: const Text('Pending and Accepted leave requests'),
                 onTap: () {
