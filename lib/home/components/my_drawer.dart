@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:new_ess/read_leaves/pages/all_leaves_page.dart';
+import 'package:new_ess/read_leaves/pages/leave_headers_page.dart';
 
 import '../../read_users page/all_users_page.dart';
 import '../utils/home_utils.dart';
@@ -41,7 +41,7 @@ class MyDrawer extends StatelessWidget {
                   onTap: () {
                     // Handle the tap event for this Tile
                     Navigator.pop(context);
-                    utility.goToPage(context, const AllLeavesPage());
+                    utility.goToPage(context, const LeaveHeadersPage());
                   },
                 ),
                 Divider(

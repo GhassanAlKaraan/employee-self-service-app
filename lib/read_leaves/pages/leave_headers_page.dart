@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:new_ess/read_leaves/components/read%20data/header_card.dart';
 import '../utils/leaves_utils.dart';
 import '../pages/leave_details_page.dart';
-import '../components/read data/get_leave_header.dart';
 
-class AllLeavesPage extends StatefulWidget {
-  const AllLeavesPage({super.key});
+class LeaveHeadersPage extends StatefulWidget {
+  const LeaveHeadersPage({super.key});
 
   @override
-  State<AllLeavesPage> createState() => _AllLeavesPageState();
+  State<LeaveHeadersPage> createState() => _LeaveHeadersPageState();
 }
 
-class _AllLeavesPageState extends State<AllLeavesPage> {
+class _LeaveHeadersPageState extends State<LeaveHeadersPage> {
   //List of document IDs
   List<String> docIDs = [];
 
@@ -52,7 +52,7 @@ class _AllLeavesPageState extends State<AllLeavesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Leaves pending approval:",
+        title: const Text("All Leave Requests:",
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
@@ -74,10 +74,8 @@ class _AllLeavesPageState extends State<AllLeavesPage> {
                           padding: const EdgeInsets.symmetric(vertical: 10.0),
                           child: GestureDetector(
                             onTap: () => utility.goToPage(context, LeaveDetailsPage(documentId: docIDs[index],)),
-                            child: Container(
-                              padding: const EdgeInsets.all(10),
-                                decoration: BoxDecoration(color: Colors.grey[300]),
-                                child: GetLeaveId(documentId: docIDs[index])),
+                            child:
+                           HeaderCard(documentId: docIDs[index],),
                           ),
                         );
                       }),
