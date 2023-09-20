@@ -128,8 +128,7 @@ class _LeaveDetailsPageState extends State<LeaveDetailsPage> {
 
                       const SizedBox(height: 40),
 
-                      // TODO: implement buttons functions
-                      DetailsButtons(isApproved: isApproved, documentId: widget.documentId,)
+                      DetailsButtons(isExpired: myData!['expired'],isApproved: isApproved, documentId: widget.documentId,)
                     ],
                   ),
                 ),

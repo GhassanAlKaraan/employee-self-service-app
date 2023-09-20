@@ -38,7 +38,7 @@ class DetailsCard extends StatelessWidget {
           children: [
             Text(
               isExpired
-                  ? ("Leave Expired ⛔")
+                  ? (isApproved ? "Approved ✅ (Expired)" : "Not Approved ⭕ (Expired)")
                   : (isApproved ? "Approved ✅" : "Not Approved ⭕"),
               style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
