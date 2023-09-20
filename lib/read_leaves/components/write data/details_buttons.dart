@@ -137,9 +137,8 @@ class _DetailsButtonsState extends State<DetailsButtons> {
               //     : utility.showSnackBar(context, "Feature Coming Soon");
               // TODO: Remind Later here
               // try {
-              //   // widget.notificationService
-              //   //     .sendNotification("Reminder title", "Reminder body");
-              //   widget.notificationService.scheduleNotificationAfterDuration(context);
+               //widget.notificationService.sendNotification("Reminder title", "Reminder body");
+                 widget.notificationService.scheduleNotificationAfterDuration(context);
               //
               // } catch (e) {
               //   print(e.toString());

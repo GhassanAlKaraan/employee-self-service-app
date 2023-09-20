@@ -114,8 +114,7 @@ class NotificationService {
       final now = tz.TZDateTime.now(tz.local);
 
       //todo
-      //final scheduledTime = now.add(Duration(hours: hours));
-      final scheduledTime = now.add(Duration(minutes: hours));
+      final scheduledTime = now.add(Duration(hours: hours));
 
 
       // Set up the notification
