@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
 import 'package:new_ess/read_leaves/components/read%20data/details_card.dart';
 import '../components/write data/details_buttons.dart';
+import '../services/notification_service.dart';
 import '../utils/leaves_utils.dart';
 
 class LeaveDetailsPage extends StatefulWidget {
@@ -62,7 +63,7 @@ class _LeaveDetailsPageState extends State<LeaveDetailsPage> {
     return formattedToDate;
   }
 
-  double calculateTotalDays(Map<String, dynamic> myData){
+  double calculateTotalDays(Map<String, dynamic> myData) {
     Timestamp toDateTimestamp = myData['to date'];
     DateTime toDateDateTime = toDateTimestamp.toDate();
 
@@ -76,9 +77,15 @@ class _LeaveDetailsPageState extends State<LeaveDetailsPage> {
     return differenceInDays;
   }
 
+  //Notifications
+  NotificationService notificationService = NotificationService();
+
   @override
   void initState() {
     super.initState();
+    //Notifications
+    notificationService.initializeNotifications();
+
     // Call getData and update myData when data is fetched
     getData(widget.documentId).then((data) {
       setState(() {
@@ -125,10 +132,13 @@ class _LeaveDetailsPageState extends State<LeaveDetailsPage> {
                         leaveType: myData!['type'],
                         totalDays: calculateTotalDays(myData!),
                       ),
-
                       const SizedBox(height: 40),
-
-                      DetailsButtons(isExpired: myData!['expired'],isApproved: isApproved, documentId: widget.documentId,)
+                      DetailsButtons(
+                        notificationService: notificationService,
+                        isExpired: myData!['expired'],
+                        isApproved: isApproved,
+                        documentId: widget.documentId,
+                      )
                     ],
                   ),
                 ),

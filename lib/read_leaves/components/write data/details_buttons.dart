@@ -4,18 +4,27 @@ import 'package:flutter/material.dart';
 import '../../utils/leaves_utils.dart';
 import '../my_button_3.dart';
 
-class DetailsButtons extends StatelessWidget {
+class DetailsButtons extends StatefulWidget {
   DetailsButtons({
     super.key,
     required this.isApproved,
     required this.documentId,
     required this.isExpired,
+    required this.notificationService,
   });
+
+  final notificationService;
 
   final String documentId; // Same as leave id
   final bool isExpired;
 
   final bool isApproved;
+
+  @override
+  State<DetailsButtons> createState() => _DetailsButtonsState();
+}
+
+class _DetailsButtonsState extends State<DetailsButtons> {
   final Utility utility = Utility();
 
   Future updateFirestoreApproved(String documentId, bool approval) async {
@@ -42,11 +51,11 @@ class DetailsButtons extends StatelessWidget {
     //Handle buttons colors
     Color? approvedColor;
     Color? disapprovedColor;
-    if (isExpired) {
+    if (widget.isExpired) {
       approvedColor = Colors.grey[500];
       disapprovedColor = Colors.grey[500];
     } else {
-      if (isApproved) {
+      if (widget.isApproved) {
         approvedColor = Colors.grey[500];
         disapprovedColor = Colors.black;
       } else {
@@ -65,15 +74,15 @@ class DetailsButtons extends StatelessWidget {
               child: MyButton3(
                 onTap: () {
                   try {
-                    if (isExpired) {
+                    if (widget.isExpired) {
                       utility.showAlert(context, "Leave request is expired");
                     } else {
-                      if (isApproved) {
+                      if (widget.isApproved) {
                         utility.showAlert(context, "Leave Already Approved");
                       } else {
                         utility.showAlertDialog(context, () {
                           Navigator.of(context).pop();
-                          updateFirestoreApproved(documentId, true);
+                          updateFirestoreApproved(widget.documentId, true);
                           utility.showSnackBar(context, "Done");
                         }, "Approve Leave");
                       }
@@ -94,15 +103,15 @@ class DetailsButtons extends StatelessWidget {
               child: MyButton3(
                 onTap: () {
                   try {
-                    if (isExpired) {
+                    if (widget.isExpired) {
                       utility.showAlert(context, "Leave request is expired");
                     } else {
-                      if (!isApproved) {
+                      if (!widget.isApproved) {
                         utility.showAlert(context, "Leave is not Approved");
                       } else {
                         utility.showAlertDialog(context, () {
                           Navigator.of(context).pop();
-                          updateFirestoreApproved(documentId, false);
+                          updateFirestoreApproved(widget.documentId, false);
                           utility.showSnackBar(context, "Done");
                         }, "Disapprove Leave");
                       }
@@ -119,13 +128,20 @@ class DetailsButtons extends StatelessWidget {
         ),
         const SizedBox(height: 25),
         Row(children: [
+          //Remind me Later button
           Expanded(
               child: MyButton3(
             onTap: () {
-              isApproved
-                  ? utility.showSnackBar(context, "Leave Already Approved")
-                  : utility.showSnackBar(context, "Feature Coming Soon");
+              // widget.isApproved
+              //     ? utility.showSnackBar(context, "Leave Already Approved")
+              //     : utility.showSnackBar(context, "Feature Coming Soon");
               // TODO: Remind Later here
+              try {
+                widget.notificationService
+                    .sendNotification("Reminder title", "Reminder body");
+              } catch (e) {
+                print(e.toString());
+              }
             },
             txt: "Remind me Later 🕑",
             color: approvedColor,
