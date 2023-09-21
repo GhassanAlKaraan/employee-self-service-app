@@ -20,3 +20,13 @@ git fetch origin
 git branch -u origin/main main
 git remote set-head origin -a
 
+
+#FlutterFire
+
+terminal commands: 
+  
+ firebase login 
+ dart pub global activate flutterfire_cli 
+ flutterfire configure 
+ flutter pub add firebase_core 
+ flutter pub add firebase_auth
